@@ -157,6 +157,7 @@ for blockNum = 1:nblock
 
     distractorTiming_stimulus = trialDistractor_stimulus{blockNum};
     distractorTiming_dot      = trialDistractor_dot{blockNum}+expectedTime;
+    sequence_ix = 0; % counter so that after 4 sequence stimuli we can show 1s pause against adaptation effects.
     for trialNum = 1:ntrials
         
         %% Draw first reference stimulus after ITI
@@ -232,10 +233,16 @@ for blockNum = 1:nblock
             firstStim = 0;
         end
         
-        
-        
-        
-        
+        sequence_ix = sequence_ix+1;
+        if sequence_ix == 4
+            sequence_ix = 0;
+            % ISI seconds pause between sequences
+            Screen('FillRect',cfg.win,cfg.background)
+            draw_fixationdot_task(cfg,params.dotSize,params.targetsColor*cfg.Lmax_rgb,distractorTiming_dot,startTime,expectedTime,drawingtime,1)
+            onset = Screen('Flip', cfg.win, startTime + expectedTime - cfg.halfifi)-startTime;
+            expectedTime = expectedTime + cfg.sequence.ISI;
+            draw_fixationdot_task(cfg,params.dotSize,params.targetsColor*cfg.Lmax_rgb,distractorTiming_dot,startTime,expectedTime,drawingtime)
+        end
         
     end
     Screen('FillRect',cfg.win,cfg.background)

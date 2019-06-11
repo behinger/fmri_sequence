@@ -24,7 +24,8 @@ cfg.sequence.refOrient = [0 45 90 135];
 cfg.sequence.spatialFrequency = 1; % cpd
 cfg.sequence.phases = linspace(0,2*pi,13);
 cfg.sequence.phases(end) = []; %delete last one as 0 = 2*pi
-cfg.sequence.spatialFrequency_catch = 1.25;
+cfg.sequence.spatialFrequency_catch = 2;%1.25;
+cfg.sequence.ISI = 1;
 
 cfg.sequence.contrast = [0.5 1]; % max contrast
 cfg.sequence.start_linear_decay_in_degree = 0.5;
@@ -32,10 +33,10 @@ cfg.sequence.start_linear_decay_in_degree = 0.5;
 cfg.sequence.stimdur = 0.25;
 
 
-cfg.sequence.trialLength = round(14/cfg.TR)*cfg.TR; %
+cfg.sequence.trialLength = round(16/cfg.TR)*cfg.TR; %
 cfg.sequence.scannerWaitTime = cfg.TR * 3;
 
-cfg.sequence.ITI = cfg.sequence.trialLength;
+cfg.sequence.ITI = round(10/cfg.TR)*cfg.TR;%cfg.sequence.trialLength;
 
 cfg.sequence.dotSize = 1.5*[0.25 0.06]; % Size of fixation dot in pixels
 

@@ -6,7 +6,7 @@
 tic;
 cfg = struct();
 
-cfg.debug = 0; % Check debugmode
+cfg.debug = 1; % Check debugmode
 
 cfg.computer_environment = 't480s'; % could be "mri", "dummy", "work_station", "behav"
 cfg.mri_scanner = 'prisma'; % could be "trio", "avanto","prisma", "essen"
@@ -21,16 +21,18 @@ cfg.TR = 2.336; % CAIPI sequence
 
 cfg = setup_parameters(cfg);
 
+stimulatedTrialLength = (1/cfg.sequence.ISI+1)*cfg.sequence.stimdur*round(cfg.sequence.trialLength/( (1/cfg.sequence.ISI+1)*cfg.sequence.stimdur)/4)*4;
+fprintf('TR: %.3fs \n block:\t\t%.1fs \n blockEf:\t%.1fs \n ITI:\t\t%.1fs\n',cfg.TR,cfg.sequence.trialLength,stimulatedTrialLength,cfg.sequence.ITI)
 %%
 cfg.sequence.numRuns = 4;
 cfg.sequence.numBlocks = 8; % Number of trials in a run
 
 fprintf('Setting up parameters \n')
-clear screen % to reset the debugmod
+clear screen % to reset the debugmode
 if cfg.debug
     input('!!!DEBUGMODE ACTIVATED!!! - continue with enter')
     Screen('Preference', 'SkipSyncTests', 1)
-    PsychDebugWindowConfiguration;
+%     PsychDebugWindowConfiguration;
 end
 
 
@@ -68,8 +70,10 @@ cfg = setup_window(cfg,whichScreen);
 
 %%
 %% Do main Task
-cfg.sequence.ITI = 2.5;
+% cfg.sequence.ITI = 2.5
 cfg.sequence.targetsColor = 0; % no distractor task at the 2fixation dot
+% cfg.sequence.scannerWaitTime = 1
+
 fprintf('Starting with main Task')
 
 for curRun = 1:cfg.sequence.numRuns % is a sorted list of runs
