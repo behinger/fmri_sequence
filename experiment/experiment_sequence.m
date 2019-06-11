@@ -70,49 +70,64 @@ Screen('FillRect',cfg.win,cfg.background);
 % end
 fprintf('Showing Instructions: waiting for mouse click (waiting for ScanTrigger after this)')
 
-% while ~any(clicks)
-%     colorInside = 0;
-%     introtex = cfg.stimTex(1);
-%
-%     flicker = mod(GetSecs,1)<cfg.flicker.targetsDuration; % flicker every 1s
-%     if strcmp(randomization.attention{1},'attentionOnFixation')
-%
-%         if flicker
-%             colorInside = 255*cfg.flicker.targetsColor;
-%         else
-%             colorInside = 0;
-% end
-instructions = 'Look at the fixation dot in the centre of the screen at all times\n\n\n\n Press a key if the stimulus orientation is different from 0°, 45°, 90° or 135° \n\n\n\n Run length: 5 minutes';
-Screen('DrawText',cfg.win,'Waiting for mouse click...', 100, 100);
-
-%     else
-%         instructions = 'Look towards the dot in the centre of the screen at all times\n\n\n\n Press a key if the STIMULUS flickers \n\n\n\n Run length: 5 minutes';
-%         if flicker
-%             introtex = cfg.stimTexCatch(1);
-%         else
-%             % Always 0 or in rotation condition
-%             introtex = cfg.stimTex(1);
-%         end
-%     end
-%     Screen('DrawTexture',cfg.win,introtex,[],OffsetRect(CenterRect([0 0, 0.5*cfg.stimsize],cfg.rect),cfg.width/4,0));
-
-
-
-[~,~,~] = DrawFormattedText(cfg.win, instructions, 'left', 'center'); % requesting 3 arguments disables clipping ;)
-colorInside = 0;
-draw_fixationdot(cfg,cfg.sequence.dotSize,0,colorInside,cfg.width/4*3,cfg.height/2)
-
-Screen('Flip',cfg.win);
-
+randStim = 1;
+prevRandStim = 1;
+lastChange = 0;
 while ~any(clicks)
-    [~,~,clicks] = GetMouse();
-end
-%     clicks
+    
+    introtex = cfg.stimTex(1);
+    
+    
+    instructions = '    Look at the fixation dot in the centre of the screen at all times\n\n\n\n    Press a button if the image has more stripes than usual \n\n\n\n    Run length: 5 minutes';
+    Screen('DrawText',cfg.win,'Waiting for experimenter (mouse click)', 100, 100);
+    
+    
+    flicker = mod(GetSecs,3)<0.8; % flicker every 1s
+    
+    if flicker
+        introtex = cfg.stimTexCatch_highContr(1);
+        displayTime = 0.7;
 
-% end
+    else
+        %             % Always 0 or in rotation condition
+        introtex = cfg.stimTex_highContr(1);
+        displayTime = 0;
+    end
+    
+    if (GetSecs()-lastChange)>0.25 && ~flicker
+        %change stimulus
+        while randStim == prevRandStim
+            randStim = randi(4,1);
+            
+        end
+        prevRandStim = randStim;
+        lastChange = GetSecs();
+    end
+    %     end
+    rotationvector = [0 45 90 135];
+    Screen('DrawTexture',cfg.win,introtex,[],OffsetRect(CenterRect([0 0, 0.5*cfg.stimsize],cfg.rect),cfg.width/4,0),rotationvector(randStim));
+    
+    if flicker
+                Screen('DrawText',cfg.win,'Press a button!', cfg.width/4*2.5, cfg.height/4*2.9);
+
+    end
+    
+    [~,~,~] = DrawFormattedText(cfg.win, instructions, 'left', 'center'); % requesting 3 arguments disables clipping ;)
+    colorInside = 0;
+    draw_fixationdot(cfg,cfg.sequence.dotSize,0,colorInside,cfg.width/4*3,cfg.height/2)
+    
+    Screen('Flip',cfg.win);
+    
+    % while ~any(clicks)
+    [~,~,clicks] = GetMouse();
+    
+    % end
+    %     clicks
+    
+end
 fprintf(' ... click\n')
 
-%% --------------------------------------------------------------------------
+% --------------------------------------------------------------------------
 % Wait to detect first scanner pulse before starting experiment
 if cfg.mriPulse == 1
     Screen('DrawText',cfg.win,'Waiting for mri scanner to be ready...', 100, 100);
@@ -154,7 +169,7 @@ for blockNum = 1:nblock
     end
     ntrials = length(random_block.trial);
     expectedTime_start = expectedTime;
-
+    
     distractorTiming_stimulus = trialDistractor_stimulus{blockNum};
     distractorTiming_dot      = trialDistractor_dot{blockNum}+expectedTime;
     sequence_ix = 0; % counter so that after 4 sequence stimuli we can show 1s pause against adaptation effects.
@@ -164,12 +179,12 @@ for blockNum = 1:nblock
         
         
         
-%         fprintf(fLog,'%i from %i \t condition: %s \t contrast: %.1f \n',trialNum,ntrials,random_block.condition{trialNum},random_block.contrast(trialNum));
+        %         fprintf(fLog,'%i from %i \t condition: %s \t contrast: %.1f \n',trialNum,ntrials,random_block.condition{trialNum},random_block.contrast(trialNum));
         
         
         %% STIMULUS
         expectedtimings(1,trialNum) = expectedTime;
-%         fprintf(fLog,'expectedTime(TR):\t %.5f \t toc: %.5f\n',expectedTime/cfg.TR,(GetSecs-startTime)/cfg.TR);
+        %         fprintf(fLog,'expectedTime(TR):\t %.5f \t toc: %.5f\n',expectedTime/cfg.TR,(GetSecs-startTime)/cfg.TR);
         
         firstStim = 0;
         
@@ -182,9 +197,9 @@ for blockNum = 1:nblock
         % Define Rotation decrement (thisis also indicator of catch trial)
         if any(trialNum == ceil(distractorTiming_stimulus*(1/singleStimDuration)))
             rotationDecrement = (randi([0,1],1)*2-1) * 45/2; % roughly 11° rotation decrement
-
+            
         else
-
+            
             rotationDecrement = 0;
         end
         
@@ -201,24 +216,24 @@ for blockNum = 1:nblock
                 end
             case 1
                 if rotationDecrement == 0
-                stim = cfg.stimTex_highContr(phase_ix);
+                    stim = cfg.stimTex_highContr(phase_ix);
                 else
-                stim = cfg.stimTexCatch_highContr(phase_ix);
-
+                    stim = cfg.stimTexCatch_highContr(phase_ix);
+                    
                 end
         end
         Screen('DrawTexture',cfg.win,stim,[],[],rotationDecrement+random_block.stimulus(trialNum));
         
         
         draw_fixationdot_task(cfg,params.dotSize,params.targetsColor*cfg.Lmax_rgb,distractorTiming_dot,startTime,expectedTime,drawingtime,1)
-%         fprintf(fLog,'beforeOnset(TR):\t %.5f \t toc: %.5f\n',(expectedTime-cfg.halfifi)/cfg.TR,(GetSecs-startTime)/cfg.TR);
+        %         fprintf(fLog,'beforeOnset(TR):\t %.5f \t toc: %.5f\n',(expectedTime-cfg.halfifi)/cfg.TR,(GetSecs-startTime)/cfg.TR);
         
         stimOnset = Screen('Flip', cfg.win, startTime + expectedTime - cfg.halfifi,1)-startTime;
-%         fprintf(fLog,'onsettimeSTIM(TR):\t %.5f \t toc: %.5f\n',stimOnset/cfg.TR,(GetSecs-startTime)/cfg.TR);
+        %         fprintf(fLog,'onsettimeSTIM(TR):\t %.5f \t toc: %.5f\n',stimOnset/cfg.TR,(GetSecs-startTime)/cfg.TR);
         if rotationDecrement == 0
             add_log_entry('stimOnset',stimOnset)
         else
-           add_log_entry('catchOnset',stimOnset)
+            add_log_entry('catchOnset',stimOnset)
         end
         % how long should the stimulus be on?
         expectedTime = expectedTime + singleStimDuration;
@@ -248,14 +263,14 @@ for blockNum = 1:nblock
     Screen('FillRect',cfg.win,cfg.background)
     draw_fixationdot(cfg,params.dotSize)
     onset = Screen('Flip', cfg.win, startTime + expectedTime - cfg.halfifi)-startTime;
-%     fprintf(fLog,'lastTrialFlip(TR):%.5f \t toc: %.5f\n',onset/cfg.TR,(GetSecs-startTime)/cfg.TR);
+    %     fprintf(fLog,'lastTrialFlip(TR):%.5f \t toc: %.5f\n',onset/cfg.TR,(GetSecs-startTime)/cfg.TR);
     add_log_entry('blockend',onset)
-
+    
     
     % overwrite expected Time to catch up with minor fluctiations in
     % expected Time
     expectedTime = expectedTime_start+params.trialLength + params.ITI;
-%     fprintf(fLog,'expectedTime ITI(TR):%.5f \t toc: %.5f\n',expectedTime/cfg.TR,(GetSecs-startTime)/cfg.TR);
+    %     fprintf(fLog,'expectedTime ITI(TR):%.5f \t toc: %.5f\n',expectedTime/cfg.TR,(GetSecs-startTime)/cfg.TR);
     
     % Read out all the button presses
     while true
@@ -314,7 +329,7 @@ for blockNum = 1:nblock
         save_and_quit;
         return
     end
-%     fprintf(fLog,'button readout over : toc: %.5f\n',(GetSecs-startTime)/cfg.TR);
+    %     fprintf(fLog,'button readout over : toc: %.5f\n',(GetSecs-startTime)/cfg.TR);
     
     
 end  % END OF TRIAL LOOP
@@ -353,7 +368,7 @@ save_and_quit;
         disp('Quit SubFunction safely');
         
     end
-    
+
     function add_log_entry(varargin)
         if nargin <1
             message = '';

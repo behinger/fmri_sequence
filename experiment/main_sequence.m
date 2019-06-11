@@ -16,7 +16,10 @@ cfg.writtenCommunication = 0;
 
 
 % 3T TR should be 3.2 or 3.8 (WB)
-cfg.TR = 2.336; % CAIPI sequence
+cfg.TR = 2.336; % CAIPI sequence Essen
+
+cfg.TR = 1.500; % 213 image volumes to be recorded
+
 % cfg.TR = 3.408; % TR will determine stimulus timings
 
 cfg = setup_parameters(cfg);
@@ -24,15 +27,15 @@ cfg = setup_parameters(cfg);
 stimulatedTrialLength = (1/cfg.sequence.ISI+1)*cfg.sequence.stimdur*round(cfg.sequence.trialLength/( (1/cfg.sequence.ISI+1)*cfg.sequence.stimdur)/4)*4;
 fprintf('TR: %.3fs \n block:\t\t%.1fs \n blockEf:\t%.1fs \n ITI:\t\t%.1fs\n',cfg.TR,cfg.sequence.trialLength,stimulatedTrialLength,cfg.sequence.ITI)
 %%
-cfg.sequence.numRuns = 4;
-cfg.sequence.numBlocks = 8; % Number of trials in a run
+cfg.sequence.numRuns = 8;
+cfg.sequence.numBlocks = 12; % Number of trials in a run
 
 fprintf('Setting up parameters \n')
 clear screen % to reset the debugmode
 if cfg.debug
     input('!!!DEBUGMODE ACTIVATED!!! - continue with enter')
     Screen('Preference', 'SkipSyncTests', 1)
-%     PsychDebugWindowConfiguration;
+    PsychDebugWindowConfiguration;
 end
 
 
