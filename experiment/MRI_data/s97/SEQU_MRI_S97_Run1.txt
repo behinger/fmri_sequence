@@ -1,0 +1,728 @@
+1 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 3.00000 	 toc: 0.00222
+beforeOnset(TR):	 2.99643 	 toc: 0.00412
+onsettimeSTIM(TR):	 3.00347 	 toc: 3.00396
+2 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 3.10702 	 toc: 3.00481
+beforeOnset(TR):	 3.10345 	 toc: 3.00509
+onsettimeSTIM(TR):	 3.11048 	 toc: 3.11092
+3 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 3.21404 	 toc: 3.11123
+beforeOnset(TR):	 3.21047 	 toc: 3.11151
+onsettimeSTIM(TR):	 3.21749 	 toc: 3.21802
+4 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 3.32106 	 toc: 3.21832
+beforeOnset(TR):	 3.31749 	 toc: 3.21949
+onsettimeSTIM(TR):	 3.32449 	 toc: 3.32537
+5 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 3.42808 	 toc: 3.32602
+beforeOnset(TR):	 3.42452 	 toc: 3.32697
+onsettimeSTIM(TR):	 3.43152 	 toc: 3.43200
+6 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 3.53510 	 toc: 3.43253
+beforeOnset(TR):	 3.53154 	 toc: 3.43271
+onsettimeSTIM(TR):	 3.53853 	 toc: 3.53886
+7 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 3.64212 	 toc: 3.53912
+beforeOnset(TR):	 3.63856 	 toc: 3.53927
+onsettimeSTIM(TR):	 3.64554 	 toc: 3.64586
+8 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 3.74914 	 toc: 3.64606
+beforeOnset(TR):	 3.74558 	 toc: 3.64623
+onsettimeSTIM(TR):	 3.75255 	 toc: 3.75296
+9 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 3.85616 	 toc: 3.75316
+beforeOnset(TR):	 3.85260 	 toc: 3.75331
+onsettimeSTIM(TR):	 3.85956 	 toc: 3.85998
+10 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 3.96318 	 toc: 3.86020
+beforeOnset(TR):	 3.95962 	 toc: 3.86035
+onsettimeSTIM(TR):	 3.96658 	 toc: 3.96682
+11 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 4.07021 	 toc: 3.96702
+beforeOnset(TR):	 4.06664 	 toc: 3.96718
+onsettimeSTIM(TR):	 4.07359 	 toc: 4.07386
+12 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 4.17723 	 toc: 4.07408
+beforeOnset(TR):	 4.17366 	 toc: 4.07423
+onsettimeSTIM(TR):	 4.18060 	 toc: 4.18089
+13 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 4.28425 	 toc: 4.18113
+beforeOnset(TR):	 4.28068 	 toc: 4.18129
+onsettimeSTIM(TR):	 4.28762 	 toc: 4.28793
+14 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 4.39127 	 toc: 4.28815
+beforeOnset(TR):	 4.38770 	 toc: 4.28831
+onsettimeSTIM(TR):	 4.39463 	 toc: 4.39494
+15 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 4.49829 	 toc: 4.39517
+beforeOnset(TR):	 4.49472 	 toc: 4.39531
+onsettimeSTIM(TR):	 4.50164 	 toc: 4.50195
+16 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 4.60531 	 toc: 4.50217
+beforeOnset(TR):	 4.60174 	 toc: 4.50234
+onsettimeSTIM(TR):	 4.60865 	 toc: 4.60895
+17 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 4.71233 	 toc: 4.60918
+beforeOnset(TR):	 4.70876 	 toc: 4.60933
+onsettimeSTIM(TR):	 4.71566 	 toc: 4.71596
+18 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 4.81935 	 toc: 4.71619
+beforeOnset(TR):	 4.81578 	 toc: 4.71634
+onsettimeSTIM(TR):	 4.82267 	 toc: 4.82298
+19 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 4.92637 	 toc: 4.82319
+beforeOnset(TR):	 4.92280 	 toc: 4.82336
+onsettimeSTIM(TR):	 4.92969 	 toc: 4.92996
+20 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 5.03339 	 toc: 4.93018
+beforeOnset(TR):	 5.02982 	 toc: 4.93036
+onsettimeSTIM(TR):	 5.03670 	 toc: 5.03699
+21 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 5.14041 	 toc: 5.03722
+beforeOnset(TR):	 5.13684 	 toc: 5.03737
+onsettimeSTIM(TR):	 5.14371 	 toc: 5.14402
+22 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 5.24743 	 toc: 5.14424
+beforeOnset(TR):	 5.24386 	 toc: 5.14441
+onsettimeSTIM(TR):	 5.25072 	 toc: 5.25102
+23 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 5.35445 	 toc: 5.25125
+beforeOnset(TR):	 5.35089 	 toc: 5.25140
+onsettimeSTIM(TR):	 5.35773 	 toc: 5.35804
+24 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 5.46147 	 toc: 5.42240
+beforeOnset(TR):	 5.45791 	 toc: 5.42263
+onsettimeSTIM(TR):	 5.46475 	 toc: 5.46506
+25 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 5.56849 	 toc: 5.47550
+beforeOnset(TR):	 5.56493 	 toc: 5.47644
+onsettimeSTIM(TR):	 5.57176 	 toc: 5.57204
+26 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 5.67551 	 toc: 5.57227
+beforeOnset(TR):	 5.67195 	 toc: 5.57242
+onsettimeSTIM(TR):	 5.67877 	 toc: 5.67907
+27 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 5.78253 	 toc: 5.67930
+beforeOnset(TR):	 5.77897 	 toc: 5.67947
+onsettimeSTIM(TR):	 5.78578 	 toc: 5.78610
+28 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 5.88955 	 toc: 5.78631
+beforeOnset(TR):	 5.88599 	 toc: 5.78647
+onsettimeSTIM(TR):	 5.89280 	 toc: 5.89310
+29 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 5.99658 	 toc: 5.89331
+beforeOnset(TR):	 5.99301 	 toc: 5.89347
+onsettimeSTIM(TR):	 5.99981 	 toc: 6.00012
+30 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 6.10360 	 toc: 6.00035
+beforeOnset(TR):	 6.10003 	 toc: 6.00052
+onsettimeSTIM(TR):	 6.10682 	 toc: 6.10713
+31 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 6.21062 	 toc: 6.10736
+beforeOnset(TR):	 6.20705 	 toc: 6.10751
+onsettimeSTIM(TR):	 6.21383 	 toc: 6.21415
+32 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 6.31764 	 toc: 6.21667
+beforeOnset(TR):	 6.31407 	 toc: 6.21693
+onsettimeSTIM(TR):	 6.32084 	 toc: 6.32111
+33 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 6.42466 	 toc: 6.32134
+beforeOnset(TR):	 6.42109 	 toc: 6.32149
+onsettimeSTIM(TR):	 6.42785 	 toc: 6.42816
+34 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 6.53168 	 toc: 6.42837
+beforeOnset(TR):	 6.52811 	 toc: 6.42852
+onsettimeSTIM(TR):	 6.53487 	 toc: 6.53517
+35 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 6.63870 	 toc: 6.53539
+beforeOnset(TR):	 6.63513 	 toc: 6.53556
+onsettimeSTIM(TR):	 6.64188 	 toc: 6.64219
+36 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 6.74572 	 toc: 6.64240
+beforeOnset(TR):	 6.74215 	 toc: 6.64256
+onsettimeSTIM(TR):	 6.74890 	 toc: 6.74921
+37 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 6.85274 	 toc: 6.74945
+beforeOnset(TR):	 6.84917 	 toc: 6.74961
+onsettimeSTIM(TR):	 6.85590 	 toc: 6.85621
+38 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 6.95976 	 toc: 6.85643
+beforeOnset(TR):	 6.95619 	 toc: 6.85658
+onsettimeSTIM(TR):	 6.96291 	 toc: 6.96322
+39 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 7.06678 	 toc: 6.96345
+beforeOnset(TR):	 7.06321 	 toc: 6.96360
+onsettimeSTIM(TR):	 7.06993 	 toc: 7.07021
+40 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 7.17380 	 toc: 7.07043
+beforeOnset(TR):	 7.17023 	 toc: 7.07058
+onsettimeSTIM(TR):	 7.17694 	 toc: 7.17725
+41 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 7.28082 	 toc: 7.17747
+beforeOnset(TR):	 7.27726 	 toc: 7.17764
+onsettimeSTIM(TR):	 7.28395 	 toc: 7.28425
+42 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 7.38784 	 toc: 7.28448
+beforeOnset(TR):	 7.38428 	 toc: 7.28463
+onsettimeSTIM(TR):	 7.39096 	 toc: 7.39127
+43 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 7.49486 	 toc: 7.39149
+beforeOnset(TR):	 7.49130 	 toc: 7.39166
+onsettimeSTIM(TR):	 7.49798 	 toc: 7.49828
+44 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 7.60188 	 toc: 7.49850
+beforeOnset(TR):	 7.59832 	 toc: 7.49867
+onsettimeSTIM(TR):	 7.60499 	 toc: 7.60528
+45 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 7.70890 	 toc: 7.60550
+beforeOnset(TR):	 7.70534 	 toc: 7.60565
+onsettimeSTIM(TR):	 7.71200 	 toc: 7.71231
+46 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 7.81592 	 toc: 7.71254
+beforeOnset(TR):	 7.81236 	 toc: 7.71405
+onsettimeSTIM(TR):	 7.81901 	 toc: 7.81933
+47 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 7.92295 	 toc: 7.81954
+beforeOnset(TR):	 7.91938 	 toc: 7.81971
+onsettimeSTIM(TR):	 7.92602 	 toc: 7.92634
+48 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 8.02997 	 toc: 7.92656
+beforeOnset(TR):	 8.02640 	 toc: 7.92672
+onsettimeSTIM(TR):	 8.03304 	 toc: 8.03334
+49 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 8.13699 	 toc: 8.03356
+beforeOnset(TR):	 8.13342 	 toc: 8.03372
+onsettimeSTIM(TR):	 8.14005 	 toc: 8.14035
+50 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 8.24401 	 toc: 8.14057
+beforeOnset(TR):	 8.24044 	 toc: 8.14072
+onsettimeSTIM(TR):	 8.24706 	 toc: 8.24736
+51 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 8.35103 	 toc: 8.24759
+beforeOnset(TR):	 8.34746 	 toc: 8.24774
+onsettimeSTIM(TR):	 8.35407 	 toc: 8.35439
+52 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 8.45805 	 toc: 8.35461
+beforeOnset(TR):	 8.45448 	 toc: 8.35477
+onsettimeSTIM(TR):	 8.46108 	 toc: 8.46137
+53 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 8.56507 	 toc: 8.46160
+beforeOnset(TR):	 8.56150 	 toc: 8.46175
+onsettimeSTIM(TR):	 8.56810 	 toc: 8.56840
+54 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 8.67209 	 toc: 8.56862
+beforeOnset(TR):	 8.66852 	 toc: 8.56879
+onsettimeSTIM(TR):	 8.67511 	 toc: 8.67541
+55 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 8.77911 	 toc: 8.67563
+beforeOnset(TR):	 8.77554 	 toc: 8.67579
+onsettimeSTIM(TR):	 8.78212 	 toc: 8.78242
+56 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 8.88613 	 toc: 8.78265
+beforeOnset(TR):	 8.88256 	 toc: 8.78281
+onsettimeSTIM(TR):	 8.88913 	 toc: 8.88945
+57 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 8.99315 	 toc: 8.88965
+beforeOnset(TR):	 8.98958 	 toc: 8.88982
+onsettimeSTIM(TR):	 8.99614 	 toc: 8.99646
+58 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 9.10017 	 toc: 8.99669
+beforeOnset(TR):	 9.09660 	 toc: 8.99685
+onsettimeSTIM(TR):	 9.10315 	 toc: 9.10346
+59 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 9.20719 	 toc: 9.10368
+beforeOnset(TR):	 9.20363 	 toc: 9.10383
+onsettimeSTIM(TR):	 9.21017 	 toc: 9.21048
+60 from 60 	 condition: random 	 contrast: 1.0 
+expectedTime(TR):	 9.31421 	 toc: 9.21070
+beforeOnset(TR):	 9.31065 	 toc: 9.21088
+onsettimeSTIM(TR):	 9.31718 	 toc: 9.31747
+lastTrialFlip(TR):9.42419 	 toc: 9.42451
+expectedTime ITI(TR):9.85616 	 toc: 9.42456
+button readout over : toc: 9.43074
+1 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 9.85616 	 toc: 9.43105
+beforeOnset(TR):	 9.85260 	 toc: 9.43173
+onsettimeSTIM(TR):	 9.85937 	 toc: 9.85972
+2 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 9.96318 	 toc: 9.86003
+beforeOnset(TR):	 9.95962 	 toc: 9.86021
+onsettimeSTIM(TR):	 9.96639 	 toc: 9.96665
+3 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 10.07021 	 toc: 9.96688
+beforeOnset(TR):	 10.06664 	 toc: 9.96709
+onsettimeSTIM(TR):	 10.07340 	 toc: 10.07370
+4 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 10.17723 	 toc: 10.07394
+beforeOnset(TR):	 10.17366 	 toc: 10.07413
+onsettimeSTIM(TR):	 10.18041 	 toc: 10.18071
+5 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 10.28425 	 toc: 10.18096
+beforeOnset(TR):	 10.28068 	 toc: 10.18127
+onsettimeSTIM(TR):	 10.28742 	 toc: 10.28773
+6 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 10.39127 	 toc: 10.28795
+beforeOnset(TR):	 10.38770 	 toc: 10.28817
+onsettimeSTIM(TR):	 10.39443 	 toc: 10.39470
+7 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 10.49829 	 toc: 10.39493
+beforeOnset(TR):	 10.49472 	 toc: 10.39508
+onsettimeSTIM(TR):	 10.50144 	 toc: 10.50176
+8 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 10.60531 	 toc: 10.50198
+beforeOnset(TR):	 10.60174 	 toc: 10.50215
+onsettimeSTIM(TR):	 10.60846 	 toc: 10.60876
+9 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 10.71233 	 toc: 10.60900
+beforeOnset(TR):	 10.70876 	 toc: 10.60916
+onsettimeSTIM(TR):	 10.71547 	 toc: 10.71577
+10 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 10.81935 	 toc: 10.71599
+beforeOnset(TR):	 10.81578 	 toc: 10.71615
+onsettimeSTIM(TR):	 10.82248 	 toc: 10.82279
+11 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 10.92637 	 toc: 10.82303
+beforeOnset(TR):	 10.92280 	 toc: 10.82318
+onsettimeSTIM(TR):	 10.92950 	 toc: 10.92980
+12 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 11.03339 	 toc: 10.93003
+beforeOnset(TR):	 11.02982 	 toc: 10.93019
+onsettimeSTIM(TR):	 11.03650 	 toc: 11.03681
+13 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 11.14041 	 toc: 11.03705
+beforeOnset(TR):	 11.13684 	 toc: 11.03720
+onsettimeSTIM(TR):	 11.14352 	 toc: 11.14383
+14 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 11.24743 	 toc: 11.14405
+beforeOnset(TR):	 11.24386 	 toc: 11.14422
+onsettimeSTIM(TR):	 11.25053 	 toc: 11.25083
+15 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 11.35445 	 toc: 11.25106
+beforeOnset(TR):	 11.35089 	 toc: 11.25123
+onsettimeSTIM(TR):	 11.35754 	 toc: 11.35785
+16 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 11.46147 	 toc: 11.35807
+beforeOnset(TR):	 11.45791 	 toc: 11.35822
+onsettimeSTIM(TR):	 11.46455 	 toc: 11.46481
+17 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 11.56849 	 toc: 11.46503
+beforeOnset(TR):	 11.56493 	 toc: 11.46520
+onsettimeSTIM(TR):	 11.57157 	 toc: 11.57187
+18 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 11.67551 	 toc: 11.57209
+beforeOnset(TR):	 11.67195 	 toc: 11.57224
+onsettimeSTIM(TR):	 11.67858 	 toc: 11.67890
+19 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 11.78253 	 toc: 11.67912
+beforeOnset(TR):	 11.77897 	 toc: 11.67929
+onsettimeSTIM(TR):	 11.78559 	 toc: 11.78590
+20 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 11.88955 	 toc: 11.78614
+beforeOnset(TR):	 11.88599 	 toc: 11.78629
+onsettimeSTIM(TR):	 11.89260 	 toc: 11.89291
+21 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 11.99658 	 toc: 11.89313
+beforeOnset(TR):	 11.99301 	 toc: 11.89329
+onsettimeSTIM(TR):	 11.99961 	 toc: 11.99991
+22 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 12.10360 	 toc: 12.00014
+beforeOnset(TR):	 12.10003 	 toc: 12.00030
+onsettimeSTIM(TR):	 12.10662 	 toc: 12.10692
+23 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 12.21062 	 toc: 12.10714
+beforeOnset(TR):	 12.20705 	 toc: 12.10730
+onsettimeSTIM(TR):	 12.21364 	 toc: 12.21396
+24 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 12.31764 	 toc: 12.21419
+beforeOnset(TR):	 12.31407 	 toc: 12.21435
+onsettimeSTIM(TR):	 12.32065 	 toc: 12.32095
+25 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 12.42466 	 toc: 12.32117
+beforeOnset(TR):	 12.42109 	 toc: 12.32135
+onsettimeSTIM(TR):	 12.42766 	 toc: 12.42793
+26 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 12.53168 	 toc: 12.42812
+beforeOnset(TR):	 12.52811 	 toc: 12.42828
+onsettimeSTIM(TR):	 12.53467 	 toc: 12.53497
+27 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 12.63870 	 toc: 12.53519
+beforeOnset(TR):	 12.63513 	 toc: 12.53535
+onsettimeSTIM(TR):	 12.64169 	 toc: 12.64198
+28 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 12.74572 	 toc: 12.64219
+beforeOnset(TR):	 12.74215 	 toc: 12.64273
+onsettimeSTIM(TR):	 12.74870 	 toc: 12.74901
+29 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 12.85274 	 toc: 12.74923
+beforeOnset(TR):	 12.84917 	 toc: 12.74939
+onsettimeSTIM(TR):	 12.85571 	 toc: 12.85601
+30 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 12.95976 	 toc: 12.85623
+beforeOnset(TR):	 12.95619 	 toc: 12.85638
+onsettimeSTIM(TR):	 12.96272 	 toc: 12.96302
+31 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 13.06678 	 toc: 12.96324
+beforeOnset(TR):	 13.06321 	 toc: 12.96341
+onsettimeSTIM(TR):	 13.06973 	 toc: 13.07004
+32 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 13.17380 	 toc: 13.16282
+beforeOnset(TR):	 13.17023 	 toc: 13.16305
+onsettimeSTIM(TR):	 13.17675 	 toc: 13.17733
+33 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 13.28082 	 toc: 13.21303
+beforeOnset(TR):	 13.27726 	 toc: 13.21373
+onsettimeSTIM(TR):	 13.28376 	 toc: 13.28406
+34 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 13.38784 	 toc: 13.28429
+beforeOnset(TR):	 13.38428 	 toc: 13.28444
+onsettimeSTIM(TR):	 13.39077 	 toc: 13.39107
+35 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 13.49486 	 toc: 13.39132
+beforeOnset(TR):	 13.49130 	 toc: 13.39147
+onsettimeSTIM(TR):	 13.49778 	 toc: 13.49810
+36 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 13.60188 	 toc: 13.49832
+beforeOnset(TR):	 13.59832 	 toc: 13.49849
+onsettimeSTIM(TR):	 13.60479 	 toc: 13.60510
+37 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 13.70890 	 toc: 13.60533
+beforeOnset(TR):	 13.70534 	 toc: 13.60548
+onsettimeSTIM(TR):	 13.71181 	 toc: 13.71211
+38 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 13.81592 	 toc: 13.71234
+beforeOnset(TR):	 13.81236 	 toc: 13.71249
+onsettimeSTIM(TR):	 13.81882 	 toc: 13.81914
+39 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 13.92295 	 toc: 13.81937
+beforeOnset(TR):	 13.91938 	 toc: 13.81952
+onsettimeSTIM(TR):	 13.92583 	 toc: 13.92614
+40 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 14.02997 	 toc: 13.92638
+beforeOnset(TR):	 14.02640 	 toc: 13.92653
+onsettimeSTIM(TR):	 14.03284 	 toc: 14.03314
+41 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 14.13699 	 toc: 14.03335
+beforeOnset(TR):	 14.13342 	 toc: 14.03353
+onsettimeSTIM(TR):	 14.13985 	 toc: 14.14016
+42 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 14.24401 	 toc: 14.14039
+beforeOnset(TR):	 14.24044 	 toc: 14.14061
+onsettimeSTIM(TR):	 14.24686 	 toc: 14.24734
+43 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 14.35103 	 toc: 14.24757
+beforeOnset(TR):	 14.34746 	 toc: 14.24775
+onsettimeSTIM(TR):	 14.35387 	 toc: 14.35436
+44 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 14.45805 	 toc: 14.35465
+beforeOnset(TR):	 14.45448 	 toc: 14.35487
+onsettimeSTIM(TR):	 14.46089 	 toc: 14.46119
+45 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 14.56507 	 toc: 14.46143
+beforeOnset(TR):	 14.56150 	 toc: 14.46160
+onsettimeSTIM(TR):	 14.56790 	 toc: 14.56818
+46 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 14.67209 	 toc: 14.56841
+beforeOnset(TR):	 14.66852 	 toc: 14.56856
+onsettimeSTIM(TR):	 14.67491 	 toc: 14.67521
+47 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 14.77911 	 toc: 14.67543
+beforeOnset(TR):	 14.77554 	 toc: 14.67561
+onsettimeSTIM(TR):	 14.78192 	 toc: 14.78217
+48 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 14.88613 	 toc: 14.78241
+beforeOnset(TR):	 14.88256 	 toc: 14.78280
+onsettimeSTIM(TR):	 14.88894 	 toc: 14.88918
+49 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 14.99315 	 toc: 14.88942
+beforeOnset(TR):	 14.98958 	 toc: 14.88958
+onsettimeSTIM(TR):	 14.99595 	 toc: 14.99623
+50 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 15.10017 	 toc: 14.99648
+beforeOnset(TR):	 15.09660 	 toc: 14.99663
+onsettimeSTIM(TR):	 15.10296 	 toc: 15.10335
+51 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 15.20719 	 toc: 15.10354
+beforeOnset(TR):	 15.20363 	 toc: 15.10371
+onsettimeSTIM(TR):	 15.20997 	 toc: 15.21025
+52 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 15.31421 	 toc: 15.21048
+beforeOnset(TR):	 15.31065 	 toc: 15.21067
+onsettimeSTIM(TR):	 15.31699 	 toc: 15.31731
+53 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 15.42123 	 toc: 15.31753
+beforeOnset(TR):	 15.41767 	 toc: 15.31770
+onsettimeSTIM(TR):	 15.42400 	 toc: 15.42431
+54 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 15.52825 	 toc: 15.42456
+beforeOnset(TR):	 15.52469 	 toc: 15.42479
+onsettimeSTIM(TR):	 15.53101 	 toc: 15.53128
+55 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 15.63527 	 toc: 15.53153
+beforeOnset(TR):	 15.63171 	 toc: 15.53176
+onsettimeSTIM(TR):	 15.63802 	 toc: 15.63830
+56 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 15.74229 	 toc: 15.63854
+beforeOnset(TR):	 15.73873 	 toc: 15.63877
+onsettimeSTIM(TR):	 15.74503 	 toc: 15.74529
+57 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 15.84932 	 toc: 15.74553
+beforeOnset(TR):	 15.84575 	 toc: 15.74576
+onsettimeSTIM(TR):	 15.85204 	 toc: 15.85233
+58 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 15.95634 	 toc: 15.85256
+beforeOnset(TR):	 15.95277 	 toc: 15.85276
+onsettimeSTIM(TR):	 15.95906 	 toc: 15.95933
+59 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 16.06336 	 toc: 15.95956
+beforeOnset(TR):	 16.05979 	 toc: 15.95977
+onsettimeSTIM(TR):	 16.06607 	 toc: 16.06633
+60 from 60 	 condition: random 	 contrast: 0.5 
+expectedTime(TR):	 16.17038 	 toc: 16.06656
+beforeOnset(TR):	 16.16681 	 toc: 16.06677
+onsettimeSTIM(TR):	 16.17308 	 toc: 16.17336
+lastTrialFlip(TR):16.28009 	 toc: 16.28038
+expectedTime ITI(TR):16.71233 	 toc: 16.28044
+button readout over : toc: 16.28599
+1 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 16.71233 	 toc: 16.28635
+beforeOnset(TR):	 16.70876 	 toc: 16.28761
+onsettimeSTIM(TR):	 16.71528 	 toc: 16.71561
+2 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 16.81935 	 toc: 16.71663
+beforeOnset(TR):	 16.81578 	 toc: 16.71683
+onsettimeSTIM(TR):	 16.82229 	 toc: 16.82258
+3 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 16.92637 	 toc: 16.82280
+beforeOnset(TR):	 16.92280 	 toc: 16.82298
+onsettimeSTIM(TR):	 16.92930 	 toc: 16.92958
+4 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 17.03339 	 toc: 16.92980
+beforeOnset(TR):	 17.02982 	 toc: 16.92999
+onsettimeSTIM(TR):	 17.03631 	 toc: 17.03659
+5 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 17.14041 	 toc: 17.03680
+beforeOnset(TR):	 17.13684 	 toc: 17.03699
+onsettimeSTIM(TR):	 17.14332 	 toc: 17.14362
+6 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 17.24743 	 toc: 17.14383
+beforeOnset(TR):	 17.24386 	 toc: 17.14402
+onsettimeSTIM(TR):	 17.25034 	 toc: 17.25064
+7 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 17.35445 	 toc: 17.25086
+beforeOnset(TR):	 17.35089 	 toc: 17.25105
+onsettimeSTIM(TR):	 17.35735 	 toc: 17.35765
+8 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 17.46147 	 toc: 17.35786
+beforeOnset(TR):	 17.45791 	 toc: 17.35804
+onsettimeSTIM(TR):	 17.46436 	 toc: 17.46465
+9 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 17.56849 	 toc: 17.46486
+beforeOnset(TR):	 17.56493 	 toc: 17.46504
+onsettimeSTIM(TR):	 17.57137 	 toc: 17.57170
+10 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 17.67551 	 toc: 17.57193
+beforeOnset(TR):	 17.67195 	 toc: 17.57210
+onsettimeSTIM(TR):	 17.67838 	 toc: 17.67870
+11 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 17.78253 	 toc: 17.67892
+beforeOnset(TR):	 17.77897 	 toc: 17.67910
+onsettimeSTIM(TR):	 17.78540 	 toc: 17.78568
+12 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 17.88955 	 toc: 17.78589
+beforeOnset(TR):	 17.88599 	 toc: 17.78604
+onsettimeSTIM(TR):	 17.89241 	 toc: 17.89270
+13 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 17.99658 	 toc: 17.89293
+beforeOnset(TR):	 17.99301 	 toc: 17.89311
+onsettimeSTIM(TR):	 17.99942 	 toc: 17.99969
+14 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 18.10360 	 toc: 17.99990
+beforeOnset(TR):	 18.10003 	 toc: 18.00006
+onsettimeSTIM(TR):	 18.10643 	 toc: 18.10668
+15 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 18.21062 	 toc: 18.10688
+beforeOnset(TR):	 18.20705 	 toc: 18.10704
+onsettimeSTIM(TR):	 18.21344 	 toc: 18.21377
+16 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 18.31764 	 toc: 18.21398
+beforeOnset(TR):	 18.31407 	 toc: 18.21413
+onsettimeSTIM(TR):	 18.32045 	 toc: 18.32086
+17 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 18.42466 	 toc: 18.32108
+beforeOnset(TR):	 18.42109 	 toc: 18.32123
+onsettimeSTIM(TR):	 18.42747 	 toc: 18.42775
+18 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 18.53168 	 toc: 18.42800
+beforeOnset(TR):	 18.52811 	 toc: 18.42819
+onsettimeSTIM(TR):	 18.53448 	 toc: 18.53472
+19 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 18.63870 	 toc: 18.53490
+beforeOnset(TR):	 18.63513 	 toc: 18.53506
+onsettimeSTIM(TR):	 18.64149 	 toc: 18.64177
+20 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 18.74572 	 toc: 18.64198
+beforeOnset(TR):	 18.74215 	 toc: 18.64216
+onsettimeSTIM(TR):	 18.74850 	 toc: 18.74878
+21 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 18.85274 	 toc: 18.74902
+beforeOnset(TR):	 18.84917 	 toc: 18.74918
+onsettimeSTIM(TR):	 18.85551 	 toc: 18.85578
+22 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 18.95976 	 toc: 18.85603
+beforeOnset(TR):	 18.95619 	 toc: 18.85620
+onsettimeSTIM(TR):	 18.96253 	 toc: 18.96282
+23 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 19.06678 	 toc: 18.96307
+beforeOnset(TR):	 19.06321 	 toc: 18.96357
+onsettimeSTIM(TR):	 19.06954 	 toc: 19.06981
+24 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 19.17380 	 toc: 19.13421
+beforeOnset(TR):	 19.17023 	 toc: 19.13445
+onsettimeSTIM(TR):	 19.17655 	 toc: 19.17684
+25 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 19.28082 	 toc: 19.17708
+beforeOnset(TR):	 19.27726 	 toc: 19.17726
+onsettimeSTIM(TR):	 19.28356 	 toc: 19.28383
+26 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 19.38784 	 toc: 19.28405
+beforeOnset(TR):	 19.38428 	 toc: 19.28424
+onsettimeSTIM(TR):	 19.39057 	 toc: 19.39087
+27 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 19.49486 	 toc: 19.39112
+beforeOnset(TR):	 19.49130 	 toc: 19.39129
+onsettimeSTIM(TR):	 19.49759 	 toc: 19.49785
+28 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 19.60188 	 toc: 19.49806
+beforeOnset(TR):	 19.59832 	 toc: 19.49822
+onsettimeSTIM(TR):	 19.60460 	 toc: 19.60487
+29 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 19.70890 	 toc: 19.60512
+beforeOnset(TR):	 19.70534 	 toc: 19.60530
+onsettimeSTIM(TR):	 19.71161 	 toc: 19.71190
+30 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 19.81592 	 toc: 19.71215
+beforeOnset(TR):	 19.81236 	 toc: 19.71232
+onsettimeSTIM(TR):	 19.81862 	 toc: 19.81892
+31 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 19.92295 	 toc: 19.81913
+beforeOnset(TR):	 19.91938 	 toc: 19.81930
+onsettimeSTIM(TR):	 19.92564 	 toc: 19.92591
+32 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 20.02997 	 toc: 19.92623
+beforeOnset(TR):	 20.02640 	 toc: 19.92655
+onsettimeSTIM(TR):	 20.03265 	 toc: 20.03293
+33 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 20.13699 	 toc: 20.03314
+beforeOnset(TR):	 20.13342 	 toc: 20.03332
+onsettimeSTIM(TR):	 20.13966 	 toc: 20.13996
+34 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 20.24401 	 toc: 20.14020
+beforeOnset(TR):	 20.24044 	 toc: 20.14036
+onsettimeSTIM(TR):	 20.24667 	 toc: 20.24695
+35 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 20.35103 	 toc: 20.24716
+beforeOnset(TR):	 20.34746 	 toc: 20.24734
+onsettimeSTIM(TR):	 20.35368 	 toc: 20.35397
+36 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 20.45805 	 toc: 20.35418
+beforeOnset(TR):	 20.45448 	 toc: 20.35436
+onsettimeSTIM(TR):	 20.46070 	 toc: 20.46103
+37 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 20.56507 	 toc: 20.50386
+beforeOnset(TR):	 20.56150 	 toc: 20.50414
+onsettimeSTIM(TR):	 20.56771 	 toc: 20.56799
+38 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 20.67209 	 toc: 20.56823
+beforeOnset(TR):	 20.66852 	 toc: 20.56840
+onsettimeSTIM(TR):	 20.67472 	 toc: 20.67500
+39 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 20.77911 	 toc: 20.67526
+beforeOnset(TR):	 20.77554 	 toc: 20.67543
+onsettimeSTIM(TR):	 20.78173 	 toc: 20.78202
+40 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 20.88613 	 toc: 20.78223
+beforeOnset(TR):	 20.88256 	 toc: 20.78240
+onsettimeSTIM(TR):	 20.88874 	 toc: 20.88904
+41 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 20.99315 	 toc: 20.88928
+beforeOnset(TR):	 20.98958 	 toc: 20.88946
+onsettimeSTIM(TR):	 20.99576 	 toc: 20.99606
+42 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 21.10017 	 toc: 20.99630
+beforeOnset(TR):	 21.09660 	 toc: 20.99648
+onsettimeSTIM(TR):	 21.10277 	 toc: 21.10307
+43 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 21.20719 	 toc: 21.10330
+beforeOnset(TR):	 21.20363 	 toc: 21.10347
+onsettimeSTIM(TR):	 21.20978 	 toc: 21.21007
+44 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 21.31421 	 toc: 21.21031
+beforeOnset(TR):	 21.31065 	 toc: 21.21047
+onsettimeSTIM(TR):	 21.31679 	 toc: 21.31708
+45 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 21.42123 	 toc: 21.31729
+beforeOnset(TR):	 21.41767 	 toc: 21.31745
+onsettimeSTIM(TR):	 21.42380 	 toc: 21.42414
+46 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 21.52825 	 toc: 21.42438
+beforeOnset(TR):	 21.52469 	 toc: 21.42454
+onsettimeSTIM(TR):	 21.53081 	 toc: 21.53111
+47 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 21.63527 	 toc: 21.53136
+beforeOnset(TR):	 21.63171 	 toc: 21.53151
+onsettimeSTIM(TR):	 21.63783 	 toc: 21.63813
+48 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 21.74229 	 toc: 21.63839
+beforeOnset(TR):	 21.73873 	 toc: 21.63854
+onsettimeSTIM(TR):	 21.74484 	 toc: 21.74512
+49 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 21.84932 	 toc: 21.74537
+beforeOnset(TR):	 21.84575 	 toc: 21.74552
+onsettimeSTIM(TR):	 21.85185 	 toc: 21.85212
+50 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 21.95634 	 toc: 21.85236
+beforeOnset(TR):	 21.95277 	 toc: 21.85252
+onsettimeSTIM(TR):	 21.95887 	 toc: 21.95915
+51 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 22.06336 	 toc: 21.95941
+beforeOnset(TR):	 22.05979 	 toc: 21.95960
+onsettimeSTIM(TR):	 22.06588 	 toc: 22.06610
+52 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 22.17038 	 toc: 22.06631
+beforeOnset(TR):	 22.16681 	 toc: 22.06647
+onsettimeSTIM(TR):	 22.17289 	 toc: 22.17321
+53 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 22.27740 	 toc: 22.17344
+beforeOnset(TR):	 22.27383 	 toc: 22.17359
+onsettimeSTIM(TR):	 22.27990 	 toc: 22.28021
+54 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 22.38442 	 toc: 22.28046
+beforeOnset(TR):	 22.38085 	 toc: 22.28061
+onsettimeSTIM(TR):	 22.38691 	 toc: 22.38720
+55 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 22.49144 	 toc: 22.38743
+beforeOnset(TR):	 22.48787 	 toc: 22.38760
+onsettimeSTIM(TR):	 22.49392 	 toc: 22.49419
+56 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 22.59846 	 toc: 22.49442
+beforeOnset(TR):	 22.59489 	 toc: 22.49457
+onsettimeSTIM(TR):	 22.60094 	 toc: 22.60120
+57 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 22.70548 	 toc: 22.60139
+beforeOnset(TR):	 22.70191 	 toc: 22.60155
+onsettimeSTIM(TR):	 22.70794 	 toc: 22.70836
+58 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 22.81250 	 toc: 22.70856
+beforeOnset(TR):	 22.80893 	 toc: 22.70871
+onsettimeSTIM(TR):	 22.81495 	 toc: 22.81542
+59 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 22.91952 	 toc: 22.81567
+beforeOnset(TR):	 22.91595 	 toc: 22.81582
+onsettimeSTIM(TR):	 22.92197 	 toc: 22.92240
+60 from 60 	 condition: predictable 	 contrast: 1.0 
+expectedTime(TR):	 23.02654 	 toc: 22.92259
+beforeOnset(TR):	 23.02297 	 toc: 22.92274
+onsettimeSTIM(TR):	 23.02898 	 toc: 23.02947
+lastTrialFlip(TR):23.13599 	 toc: 23.13652
+expectedTime ITI(TR):23.56849 	 toc: 23.13658
