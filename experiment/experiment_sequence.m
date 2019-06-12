@@ -1,4 +1,6 @@
-function experiment_sequence(cfg,randomization)
+function exitstatus = experiment_sequence(cfg,randomization)
+
+exitstatus = 0; % early exit if not changed
 %-------------------
 %|||| BitSi ||||||||
 %-------------------
@@ -15,11 +17,11 @@ runid = randomization.run(1);
 %|||| LogFile ||||||||
 %-------------------
 
-outFile = fullfile('.','MRI_data',sprintf('s%i',subjectid), sprintf('SEQU_MRI_S%d_Run%d.mat',subjectid,runid));
+outFile = fullfile('.','MRI_data',sprintf('sub-%02i',subjectid),'ses-01','beh', sprintf('sub-%02i_ses-01_task-sequence_run-%02i.mat',subjectid,runid));
 if ~exist(fileparts(outFile),'dir')
     mkdir(fileparts(outFile))
 end
-fLog = fopen([outFile(1:end-3),'txt'],'w');
+fLog = fopen([outFile(1:end-3),'tsv'],'w');
 if fLog == -1
     error('could not open logfile')
 end
@@ -108,7 +110,7 @@ while ~any(clicks)
     Screen('DrawTexture',cfg.win,introtex,[],OffsetRect(CenterRect([0 0, 0.5*cfg.stimsize],cfg.rect),cfg.width/4,0),rotationvector(randStim));
     
     if flicker
-                Screen('DrawText',cfg.win,'Press a button!', cfg.width/4*2.5, cfg.height/4*2.9);
+                Screen('DrawText',cfg.win,'Press a button!', cfg.width/4*2.75, cfg.height/4*2.9);
 
     end
     
@@ -196,7 +198,7 @@ for blockNum = 1:nblock
         
         % Define Rotation decrement (thisis also indicator of catch trial)
         if any(trialNum == ceil(distractorTiming_stimulus*(1/singleStimDuration)))
-            rotationDecrement = (randi([0,1],1)*2-1) * 45/2; % roughly 11° rotation decrement
+            rotationDecrement = (randi([0,1],1)*2-1) * 45/2; % roughly 11ï¿½ rotation decrement
             
         else
             
@@ -208,13 +210,13 @@ for blockNum = 1:nblock
         
         % show stimulus
         switch random_block.contrast(trialNum)
-            case 0.5
+            case cfg.sequence.contrast(1)
                 if rotationDecrement == 0
                     stim = cfg.stimTex_lowContr(phase_ix);
                 else
                     stim = cfg.stimTexCatch_lowContr(phase_ix);
                 end
-            case 1
+            case cfg.sequence.contrast(2)
                 if rotationDecrement == 0
                     stim = cfg.stimTex_highContr(phase_ix);
                 else
@@ -255,6 +257,8 @@ for blockNum = 1:nblock
             Screen('FillRect',cfg.win,cfg.background)
             draw_fixationdot_task(cfg,params.dotSize,params.targetsColor*cfg.Lmax_rgb,distractorTiming_dot,startTime,expectedTime,drawingtime,1)
             onset = Screen('Flip', cfg.win, startTime + expectedTime - cfg.halfifi)-startTime;
+            add_log_entry('pauseOnset',onset)
+
             expectedTime = expectedTime + cfg.sequence.ISI;
             draw_fixationdot_task(cfg,params.dotSize,params.targetsColor*cfg.Lmax_rgb,distractorTiming_dot,startTime,expectedTime,drawingtime)
         end
@@ -326,6 +330,8 @@ for blockNum = 1:nblock
     % && instead of & causes crashes here, for some reason
     key = find(key);
     if keyPr == 1 && strcmp(KbName(key(1)),'q')
+        exitstatus = -1; % manual exit
+
         save_and_quit;
         return
     end
@@ -343,6 +349,7 @@ disp(['(Should be ',num2str(expectedTime),' seconds)']);
 
 % -----------------------------------------------------------------
 % call function to save results, close window and clean up
+exitstatus = 1; % regular exit
 
 save_and_quit;
 
