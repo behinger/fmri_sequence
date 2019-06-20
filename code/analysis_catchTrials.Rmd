@@ -1,0 +1,48 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+
+
+```
+```{r}
+
+data.path = 'experiment/MRI_data/s3'
+data <-  dir(data.path,pattern = "*.txt") %>%
+  map(~ read.table(file.path(data.path, .),header=TRUE)) %>% 
+  reduce(rbind)
+
+print(summarytools::dfSummary(data, valid.col = FALSE, graph.magnif = 0.75), method = "render")
+```
+```{r}
+head(data)
+minpositive = function(x) min(x[x > 0])
+
+data_catch = data %>% filter(message=="catchOnset") %>% rowwise() %>%
+  mutate(rt = minpositive(data%>%filter(message=="buttonpress")%>%.$onset-onset))%>%
+  mutate(rt = replace(rt, rt >1, NA))
+
+
+data_button = data%>% filter(message=="buttonpress") %>%rowwise()%>%
+  mutate(rt = minpositive(onset - data%>%
+                    filter(message=="catchOnset") %>%
+                  .$onset))%>%   mutate(rt = replace(rt, rt >1, NA))
+
+```
+```{r}
+ggplot(data_catch,aes(x=condition,y=rt,color=factor(contrast)))+ggbeeswarm::geom_quasirandom(dodge.width=0.4,width=0.1)+ expand_limits(y = 0)
+ggplot(data_button,aes(x=condition,y=rt,color=factor(contrast)))+ggbeeswarm::geom_quasirandom(dodge.width=0.4,width=0.1)+ expand_limits(y = 0)
+
+data_catch %>% group_by(contrast,condition) %>% summarise(missed = mean(1*is.na(rt)),total = length(rt)) # misses
+data_button %>% group_by(contrast,condition) %>% summarise(missed = mean(1*is.na(rt)),total = length(rt)) # false alarms
+
+```
+```{r}
+
+```
+```{r}
+
+```
