@@ -27,7 +27,7 @@ cfg.sequence.phases(end) = []; %delete last one as 0 = 2*pi
 cfg.sequence.spatialFrequency_catch = 2;%1.25;
 cfg.sequence.ISI = 1;
 
-cfg.sequence.contrast = [0.5 1]; % max contrast
+cfg.sequence.contrast = [0.3 0.8];%[0.5 1]; % max contrast
 cfg.sequence.start_linear_decay_in_degree = 0.5;
 
 cfg.sequence.stimdur = 0.25;

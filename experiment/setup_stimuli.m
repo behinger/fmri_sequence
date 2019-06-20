@@ -25,11 +25,11 @@ for i = 1:length(params.phases)
         
         params.spatialFrequency = [tmp];
         switch contrast
-            case 0.5
+            case contrasts(1)
                 cfg.stimTex_lowContr(i) = Screen('MakeTexture', cfg.win, stim);
                 
                 cfg.stimTexCatch_lowContr(i) = Screen('MakeTexture', cfg.win, stimCatch);
-            case 1
+            case contrasts(2)
                 
                 cfg.stimTex_highContr(i) = Screen('MakeTexture', cfg.win, stim);
                 
