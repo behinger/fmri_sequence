@@ -288,7 +288,7 @@ for blockNum = 1:nblock
             end
             evt = KbEventGet();
         else
-            fprintf('USE BITSI BUTTONBOX IN KEYBOARD MODE\n')
+            fprintf('PLEASE USE BITSI BUTTONBOX IN KEYBOARD MODE\n')
             save_and_quit()
 %             evt = struct();
 %             % wait max 0.1s, but we should not reach here anyway if there
