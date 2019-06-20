@@ -4,8 +4,8 @@ exitstatus = 0; % early exit if not changed
 %-------------------
 %|||| BitSi ||||||||
 %-------------------
-if strcmp(class(cfg.bitsi_buttonbox),'Bitsi_Scanner')
-    cfg.bitsi_buttonbox.clearResponses;
+if strcmp(class(cfg.bitsi_scanner),'Bitsi_Scanner')
+    %cfg.bitsi_buttonbox.clearResponses;
     cfg.bitsi_scanner.clearResponses;
 end
 cfg.numSavedResponses = 0;
@@ -84,11 +84,11 @@ while ~any(clicks)
     Screen('DrawText',cfg.win,'Waiting for experimenter (mouse click)', 100, 100);
     
     
-    flicker = mod(GetSecs,3)<0.8; % flicker every 1s
+    flicker = mod(GetSecs,3)<3; % flicker every 1s
     
     if flicker
         introtex = cfg.stimTexCatch_highContr(1);
-        displayTime = 0.7;
+        displayTime = 1.5;
 
     else
         %             % Always 0 or in rotation condition
@@ -140,10 +140,10 @@ end
 %% --------------------------------------------------------------------------
 % MAIN TRIAL LOOP
 
-if ~strcmp(class(cfg.bitsi_buttonbox),'Bitsi_Scanner')
+% if ~strcmp(class(cfg.bitsi_buttonbox),'Bitsi_Scanner')
     
     KbQueueStart(); % start trial press queue
-end
+% end
 %% Begin presenting stimuli
 % Start with fixation cross
 
@@ -273,7 +273,9 @@ for blockNum = 1:nblock
     
     % overwrite expected Time to catch up with minor fluctiations in
     % expected Time
+    expectedTimeOld = expectedTime;
     expectedTime = expectedTime_start+params.trialLength + params.ITI;
+    fprintf('timing difference:%.4f\n',expectedTime - expectedTimeOld)
     %     fprintf(fLog,'expectedTime ITI(TR):%.5f \t toc: %.5f\n',expectedTime/cfg.TR,(GetSecs-startTime)/cfg.TR);
     
     % Read out all the button presses
@@ -286,23 +288,25 @@ for blockNum = 1:nblock
             end
             evt = KbEventGet();
         else
-            evt = struct();
-            % wait max 0.1s, but we should not reach here anyway if there
-            % are no buttons left
-            [response,timestamp] = cfg.bitsi_buttonbox.getResponse(.1,true);
-            if response == 0
-                break
-            end
-            evt.Time = timestamp;
-            evt.response = char(response);
-            
-            if lower(evt.response) == evt.response
-                % lower letters for rising
-                evt.Pressed = 1;
-            else
-                % upper letters for falling edge
-                evt.Pressed = 0;
-            end
+            fprintf('USE BITSI BUTTONBOX IN KEYBOARD MODE\n')
+            save_and_quit()
+%             evt = struct();
+%             % wait max 0.1s, but we should not reach here anyway if there
+%             % are no buttons left
+%             [response,timestamp] = cfg.bitsi_buttonbox.getResponse(.1,true);
+%             if response == 0
+%                 break
+%             end
+%             evt.Time = timestamp;
+%             evt.response = char(response);
+%             
+%             if lower(evt.response) == evt.response
+%                 % lower letters for rising
+%                 evt.Pressed = 1;
+%             else
+%                 % upper letters for falling edge
+%                 evt.Pressed = 0;
+%             end
         end
         if evt.Pressed==1 % don't record key releases
             evt.trialnumber = trialNum;

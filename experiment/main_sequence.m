@@ -6,9 +6,9 @@
 tic;
 cfg = struct();
 
-cfg.debug =0; % Check debugmode
+cfg.debug =1; % Check debugmode
 
-cfg.computer_environment = 'mri'; % could be "mri", "dummy", "work_station", "behav"
+cfg.computer_environment = 't480s'; % could be "mri", "dummy", "work_station", "behav"
 cfg.mri_scanner = 'prisma'; % could be "trio", "avanto","prisma", "essen"
 
 
@@ -37,7 +37,6 @@ if cfg.debug
     Screen('Preference', 'SkipSyncTests', 1)
     PsychDebugWindowConfiguration;
 end
-
 
 
 

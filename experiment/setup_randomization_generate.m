@@ -38,6 +38,13 @@ allPerms = perms(1:4);
         | all(allPerms == repmat([1,4,3,2],size(allPerms,1),1),2);
 allPerms(remove,:) = [];
 
+
+
+% One fixed sequence throughout the experiment
+
+rand_ix = allPerms(randi(size(allPerms,1),1),:);
+sequence = cfg.sequence.refOrient(rand_ix);
+
 for runNum = 1:numRuns
     
     
@@ -52,11 +59,7 @@ for runNum = 1:numRuns
     contrast = cfg.sequence.contrast(repmat(contrast(rand_shuffle),1,numBlocks));
     
     
-    % sequence for one 5 min run
-    rand_ix = allPerms(randi(size(allPerms,1),1),:);
-    
-    sequence = cfg.sequence.refOrient(rand_ix);
-    
+
     for blockNum= 1:numBlocks
         
         stimulus = repmat(sequence,1,n_stim/4);
