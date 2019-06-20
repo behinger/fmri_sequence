@@ -99,7 +99,7 @@ for curRun = 1:cfg.sequence.numRuns % is a sorted list of runs
         if keyPr == 1 && strcmp(KbName(key(1)),'q')
             exitstatus = -1; % manual exit
             
-            save_and_quit;
+            safeQuit(cfg);
             return
         end
         

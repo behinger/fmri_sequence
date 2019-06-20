@@ -54,13 +54,13 @@ cfg.bitsi_scanner   = nan;
 cfg.bitsi_buttonbox = nan;
 if cfg.mriPulse == 1
     try
+        delete(instrfind)
         cfg.bitsi_scanner   = Bitsi_Scanner('/dev/ttyS0');
-        % We are not using bitsi buttonbox because it does not allow for a
-        % queue
-        cfg.bitsi_buttonbox = '';%Bitsi_Scanner('/dev/ttyS5');
+
+        cfg.bitsi_buttonbox = Bitsi_Scanner('/dev/ttyS5');
         fprintf('Bitsi Scanner initialized\n')
         cfg.bitsi_scanner.clearResponses()
-%         cfg.bitsi_buttonbox.clearResponses()
+        cfg.bitsi_buttonbox.clearResponses()
     catch
      
         fprintf('Could not initialize bitsi\n')

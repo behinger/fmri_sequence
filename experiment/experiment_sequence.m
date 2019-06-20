@@ -5,7 +5,7 @@ exitstatus = 0; % early exit if not changed
 %|||| BitSi ||||||||
 %-------------------
 if strcmp(class(cfg.bitsi_scanner),'Bitsi_Scanner')
-    %cfg.bitsi_buttonbox.clearResponses;
+    cfg.bitsi_buttonbox.clearResponses;
     cfg.bitsi_scanner.clearResponses;
 end
 cfg.numSavedResponses = 0;
@@ -84,19 +84,19 @@ while ~any(clicks)
     Screen('DrawText',cfg.win,'Waiting for experimenter (mouse click)', 100, 100);
     
     
-    flicker = mod(GetSecs,3)<3; % flicker every 1s
+    flicker = mod(GetSecs,6)<2; % flicker every 2s
     
     if flicker
         introtex = cfg.stimTexCatch_highContr(1);
-        displayTime = 1.5;
-
+        displayTime = 0.75;
+        
     else
         %             % Always 0 or in rotation condition
         introtex = cfg.stimTex_highContr(1);
         displayTime = 0;
     end
     
-    if (GetSecs()-lastChange)>0.25 && ~flicker
+    if (GetSecs()-lastChange)>0.5 && ~flicker
         %change stimulus
         while randStim == prevRandStim
             randStim = randi(4,1);
@@ -110,13 +110,13 @@ while ~any(clicks)
     Screen('DrawTexture',cfg.win,introtex,[],OffsetRect(CenterRect([0 0, 0.5*cfg.stimsize],cfg.rect),cfg.width/4,0),rotationvector(randStim));
     
     if flicker
-                Screen('DrawText',cfg.win,'Press a button!', cfg.width/4*2.75, cfg.height/4*2.9);
-
+        Screen('DrawText',cfg.win,'Press a button!', cfg.width/4*2.75, cfg.height/4*2.9);
+        
     end
     
     [~,~,~] = DrawFormattedText(cfg.win, instructions, 'left', 'center'); % requesting 3 arguments disables clipping ;)
     colorInside = 0;
-    draw_fixationdot(cfg,cfg.sequence.dotSize,0,colorInside,cfg.width/4*3,cfg.height/2)
+    draw_fixationdot(cfg,params.dotSize,0,colorInside,cfg.width/4*3,cfg.height/2)
     
     Screen('Flip',cfg.win);
     
@@ -140,15 +140,16 @@ end
 %% --------------------------------------------------------------------------
 % MAIN TRIAL LOOP
 
-% if ~strcmp(class(cfg.bitsi_buttonbox),'Bitsi_Scanner')
+if ~strcmp(class(cfg.bitsi_buttonbox),'Bitsi_Scanner')
     
     KbQueueStart(); % start trial press queue
-% end
+end
 %% Begin presenting stimuli
 % Start with fixation cross
 
 draw_fixationdot(cfg,params.dotSize)
 startTime = Screen('Flip',cfg.win); % Store time experiment started
+cfg.startTime = startTime;
 tic
 expectedTime = 0; % This will record what the expected event duration should be
 firstTrial = true; % Flag to show we are on first trial
@@ -173,7 +174,7 @@ for blockNum = 1:nblock
     expectedTime_start = expectedTime;
     
     distractorTiming_stimulus = trialDistractor_stimulus{blockNum};
-    distractorTiming_dot      = trialDistractor_dot{blockNum}+expectedTime;
+    %     distractorTiming_dot      = trialDistractor_dot{blockNum}+expectedTime;
     sequence_ix = 0; % counter so that after 4 sequence stimuli we can show 1s pause against adaptation effects.
     for trialNum = 1:ntrials
         
@@ -191,8 +192,8 @@ for blockNum = 1:nblock
         firstStim = 0;
         
         phase_ix = random_block.phase(trialNum); % just so every trial starts with a different phase, could be random as well
-        drawingtime = 2*cfg.halfifi;
-        draw_fixationdot(cfg,params.dotSize)
+        %         drawingtime = 2*cfg.halfifi;
+        %         draw_fixationdot(cfg,params.dotSize)
         
         
         
@@ -210,13 +211,13 @@ for blockNum = 1:nblock
         
         % show stimulus
         switch random_block.contrast(trialNum)
-            case cfg.sequence.contrast(1)
+            case params.contrast(1)
                 if rotationDecrement == 0
                     stim = cfg.stimTex_lowContr(phase_ix);
                 else
                     stim = cfg.stimTexCatch_lowContr(phase_ix);
                 end
-            case cfg.sequence.contrast(2)
+            case params.contrast(2)
                 if rotationDecrement == 0
                     stim = cfg.stimTex_highContr(phase_ix);
                 else
@@ -226,8 +227,9 @@ for blockNum = 1:nblock
         end
         Screen('DrawTexture',cfg.win,stim,[],[],rotationDecrement+random_block.stimulus(trialNum));
         
+        responses = draw_fixationdot_checkBitsi(cfg,params,expectedTime,responses);
         
-        draw_fixationdot_task(cfg,params.dotSize,params.targetsColor*cfg.Lmax_rgb,distractorTiming_dot,startTime,expectedTime,drawingtime,1)
+        %         draw_fixationdot_task(cfg,params.dotSize,params.targetsColor*cfg.Lmax_rgb,distractorTiming_dot,startTime,expectedTime,drawingtime,1)
         %         fprintf(fLog,'beforeOnset(TR):\t %.5f \t toc: %.5f\n',(expectedTime-cfg.halfifi)/cfg.TR,(GetSecs-startTime)/cfg.TR);
         
         stimOnset = Screen('Flip', cfg.win, startTime + expectedTime - cfg.halfifi,1)-startTime;
@@ -240,27 +242,19 @@ for blockNum = 1:nblock
         % how long should the stimulus be on?
         expectedTime = expectedTime + singleStimDuration;
         
-        draw_fixationdot_task(cfg,params.dotSize,params.targetsColor*cfg.Lmax_rgb,distractorTiming_dot,startTime,expectedTime,drawingtime)
-        
-        
-        if firstStim
-            stimtimings(1,trialNum) = stimOnset;
-            stimtimings(2,trialNum) = stimOffset;
-            expectedtimings(2,trialNum) = expectedTime;
-            firstStim = 0;
-        end
+        responses = draw_fixationdot_checkBitsi(cfg,params,expectedTime,responses);
         
         sequence_ix = sequence_ix+1;
         if sequence_ix == 4
             sequence_ix = 0;
             % ISI seconds pause between sequences
             Screen('FillRect',cfg.win,cfg.background)
-            draw_fixationdot_task(cfg,params.dotSize,params.targetsColor*cfg.Lmax_rgb,distractorTiming_dot,startTime,expectedTime,drawingtime,1)
+            responses = draw_fixationdot_checkBitsi(cfg,params,expectedTime,responses);
             onset = Screen('Flip', cfg.win, startTime + expectedTime - cfg.halfifi)-startTime;
             add_log_entry('pauseOnset',onset)
-
-            expectedTime = expectedTime + cfg.sequence.ISI;
-            draw_fixationdot_task(cfg,params.dotSize,params.targetsColor*cfg.Lmax_rgb,distractorTiming_dot,startTime,expectedTime,drawingtime)
+            
+            expectedTime = expectedTime + params.ISI;
+            responses = draw_fixationdot_checkBitsi(cfg,params,expectedTime,responses);
         end
         
     end
@@ -278,48 +272,7 @@ for blockNum = 1:nblock
     fprintf('timing difference:%.4f\n',expectedTime - expectedTimeOld)
     %     fprintf(fLog,'expectedTime ITI(TR):%.5f \t toc: %.5f\n',expectedTime/cfg.TR,(GetSecs-startTime)/cfg.TR);
     
-    % Read out all the button presses
-    while true
-        
-        % only if we don't have a keyboard or bitsi input break
-        if ~strcmp(class(cfg.bitsi_buttonbox),'Bitsi_Scanner')
-            if ~KbEventAvail()
-                break
-            end
-            evt = KbEventGet();
-        else
-            fprintf('PLEASE USE BITSI BUTTONBOX IN KEYBOARD MODE\n')
-            save_and_quit()
-%             evt = struct();
-%             % wait max 0.1s, but we should not reach here anyway if there
-%             % are no buttons left
-%             [response,timestamp] = cfg.bitsi_buttonbox.getResponse(.1,true);
-%             if response == 0
-%                 break
-%             end
-%             evt.Time = timestamp;
-%             evt.response = char(response);
-%             
-%             if lower(evt.response) == evt.response
-%                 % lower letters for rising
-%                 evt.Pressed = 1;
-%             else
-%                 % upper letters for falling edge
-%                 evt.Pressed = 0;
-%             end
-        end
-        if evt.Pressed==1 % don't record key releases
-            evt.trialnumber = trialNum;
-            evt.TimeMinusStart = evt.Time - startTime;
-            evt.trialDistractor_stimulus = trialDistractor_stimulus{blockNum};
-            evt.trialDistractor_dot = trialDistractor_dot{blockNum};
-            evt.subject = randomization.subject(1);
-            evt.run = randomization.run(1);
-            evt.block = blockNum;
-            responses = [responses evt];
-            add_log_entry('buttonpress',evt.TimeMinusStart)
-        end
-    end
+    
     % just in case save the files after each block...
     try
         save(outFile, 'randomization','cfg', 'responses','stimtimings','expectedtimings','trialDistractor_stimulus','trialDistractor_dot');
@@ -335,7 +288,7 @@ for blockNum = 1:nblock
     key = find(key);
     if keyPr == 1 && strcmp(KbName(key(1)),'q')
         exitstatus = -1; % manual exit
-
+        
         save_and_quit;
         return
     end
@@ -403,4 +356,59 @@ save_and_quit;
             params.phases(random_block.phase(trialNum)),...
             random_block.stimulus(trialNum));
     end
+
+    function responses = draw_fixationdot_checkBitsi(cfg,param,expectedTime,responses)
+        % draw fixation dot
+        draw_fixationdot(cfg,param.dotSize,0,0)
+        
+        %%
+        %         cfg.startTime = GetSecs;expectedTime = cfg.startTime + 15
+        
+        while (expectedTime-(GetSecs-cfg.startTime))>2*cfg.halfifi
+            % Read out all the button presses
+            
+            % only if we don't have a keyboard or bitsi input break
+            if ~strcmp(class(cfg.bitsi_buttonbox),'Bitsi_Scanner')
+                if ~KbEventAvail()
+                    break
+                end
+                evt = KbEventGet();
+            else
+                
+                evt = struct();
+                % wait max 0.1s, but we should not reach here anyway if there
+                % are no buttons left
+                [response,timestamp] = cfg.bitsi_buttonbox.getResponse(.01,true);
+                if response == 0
+                    evt.response = 'A';
+                    
+                else
+                    evt.response = char(response);
+                    
+                end
+                evt.Time = timestamp;
+                
+                if lower(evt.response) == evt.response
+                    % lower letters for rising
+                    evt.Pressed = 1;
+                else
+                    % upper letters for falling edge
+                    evt.Pressed = 0;
+                end
+            end
+            if evt.Pressed==1 % don't record key releases
+                evt.trialnumber = trialNum;
+                evt.TimeMinusStart = evt.Time - cfg.startTime;
+                evt.trialDistractor_stimulus = trialDistractor_stimulus{blockNum};
+                %         evt.trialDistractor_dot = trialDistractor_dot{blockNum};
+                evt.subject = randomization.subject(1);
+                evt.run = randomization.run(1);
+                evt.block = blockNum;
+                responses = [responses evt];
+                add_log_entry('buttonpress',evt.TimeMinusStart)
+            end
+        end
+    end
+
+
 end
