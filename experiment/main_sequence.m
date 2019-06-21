@@ -6,9 +6,9 @@
 tic;
 cfg = struct();
 
-cfg.debug =1; % Check debugmode
+cfg.debug =0; % Check debugmode
 
-cfg.computer_environment = 'dummy'; % could be "mri", "dummy", "work_station", "behav"
+cfg.computer_environment = 'mri'; % could be "mri", "dummy", "work_station", "behav"
 cfg.mri_scanner = 'prisma'; % could be "trio", "avanto","prisma", "essen"
 
 
@@ -27,8 +27,8 @@ cfg = setup_parameters(cfg);
 stimulatedTrialLength = (1/cfg.sequence.ISI+1)*cfg.sequence.stimdur*round(cfg.sequence.trialLength/( (1/cfg.sequence.ISI+1)*cfg.sequence.stimdur)/4)*4;
 fprintf('TR: %.3fs \n block:\t\t%.1fs \n blockEf:\t%.1fs \n ITI:\t\t%.1fs\n',cfg.TR,cfg.sequence.trialLength,stimulatedTrialLength,cfg.sequence.ITI)
 %%
-cfg.sequence.numRuns = 8 %8
-cfg.sequence.numBlocks = 12 %12 Number of trials in a run
+cfg.sequence.numRuns = 8; %8
+cfg.sequence.numBlocks = 12; %12 Number of trials in a run
 
 fprintf('Setting up parameters \n')
 clear screen % to reset the debugmode
