@@ -197,13 +197,12 @@ for blockNum = 1:nblock
         
         
         
-        % Define Rotation decrement (thisis also indicator of catch trial)
+        %catchTrial?
         if any(trialNum == ceil(distractorTiming_stimulus*(1/singleStimDuration)))
-            rotationDecrement = (randi([0,1],1)*2-1) * 45/2; % roughly 11� rotation decrement
-            
+            catchTrial = 1;
         else
             
-            rotationDecrement = 0;
+            catchTrial = 0;
         end
         
         
@@ -212,20 +211,20 @@ for blockNum = 1:nblock
         % show stimulus
         switch random_block.contrast(trialNum)
             case params.contrast(1)
-                if rotationDecrement == 0
+                if catchTrial == 0
                     stim = cfg.stimTex_lowContr(phase_ix);
                 else
                     stim = cfg.stimTexCatch_lowContr(phase_ix);
                 end
             case params.contrast(2)
-                if rotationDecrement == 0
+                if catchTrial == 0
                     stim = cfg.stimTex_highContr(phase_ix);
                 else
                     stim = cfg.stimTexCatch_highContr(phase_ix);
                     
                 end
         end
-        Screen('DrawTexture',cfg.win,stim,[],[],rotationDecrement+random_block.stimulus(trialNum));
+        Screen('DrawTexture',cfg.win,stim,[],[],random_block.stimulus(trialNum));
         
         responses = draw_fixationdot_checkBitsi(cfg,params,expectedTime,responses);
         
@@ -234,7 +233,7 @@ for blockNum = 1:nblock
         
         stimOnset = Screen('Flip', cfg.win, startTime + expectedTime - cfg.halfifi,1)-startTime;
         %         fprintf(fLog,'onsettimeSTIM(TR):\t %.5f \t toc: %.5f\n',stimOnset/cfg.TR,(GetSecs-startTime)/cfg.TR);
-        if rotationDecrement == 0
+        if catchTrial == 0
             add_log_entry('stimOnset',stimOnset)
         else
             add_log_entry('catchOnset',stimOnset)
@@ -369,15 +368,15 @@ save_and_quit;
             
             % only if we don't have a keyboard or bitsi input break
             if ~strcmp(class(cfg.bitsi_buttonbox),'Bitsi_Scanner')
-                if ~KbEventAvail()
-                    break
-                end
-                evt = KbEventGet();
+%                 if ~KbEventAvail()
+%                     break
+%                 end
+%                 evt = KbEventGet();
+            fprintf('Polling Keyboard:.4fs\n',GetSecs-cfg.startTime)
             else
                 
                 evt = struct();
-                % wait max 0.1s, but we should not reach here anyway if there
-                % are no buttons left
+
                 [response,timestamp] = cfg.bitsi_buttonbox.getResponse(.01,true);
                 if response == 0
                     evt.response = 'A';
