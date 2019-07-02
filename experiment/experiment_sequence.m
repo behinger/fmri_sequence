@@ -216,6 +216,7 @@ for blockNum = 1:nblock
                 else
                     stim = cfg.stimTexCatch_lowContr(phase_ix);
                 end
+                
             case params.contrast(2)
                 if catchTrial == 0
                     stim = cfg.stimTex_highContr(phase_ix);
@@ -368,14 +369,14 @@ save_and_quit;
             
             % only if we don't have a keyboard or bitsi input break
             if ~strcmp(class(cfg.bitsi_buttonbox),'Bitsi_Scanner')
-%                 if ~KbEventAvail()
-%                     break
-%                 end
-%                 evt = KbEventGet();
-            evt.Pressed = 0;
-            fprintf('Polling Keyboard:%.4fs\n',GetSecs-cfg.startTime)
+                if ~KbEventAvail()
+                    break
+                end
+                evt = KbEventGet();
+%             evt.Pressed = 0;
             else
-                
+%                 fprintf('Polling Keyboard:%.4fs\n',GetSecs-cfg.startTime)
+
                 evt = struct();
 
                 [response,timestamp] = cfg.bitsi_buttonbox.getResponse(.003,true);

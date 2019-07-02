@@ -8,7 +8,7 @@ cfg = struct();
 
 cfg.debug =1; % Check debugmode
 
-cfg.computer_environment = 't480s'; % could be "mri", "dummy", "work_station", "behav"
+cfg.computer_environment = 'dummy'; % could be "mri", "dummy", "work_station", "behav"
 cfg.mri_scanner = 'prisma'; % could be "trio", "avanto","prisma", "essen"
 
 
