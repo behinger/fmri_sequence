@@ -372,12 +372,13 @@ save_and_quit;
 %                     break
 %                 end
 %                 evt = KbEventGet();
-            fprintf('Polling Keyboard:.4fs\n',GetSecs-cfg.startTime)
+            evt.Pressed = 0;
+            fprintf('Polling Keyboard:%.4fs\n',GetSecs-cfg.startTime)
             else
                 
                 evt = struct();
 
-                [response,timestamp] = cfg.bitsi_buttonbox.getResponse(.01,true);
+                [response,timestamp] = cfg.bitsi_buttonbox.getResponse(.003,true);
                 if response == 0
                     evt.response = 'A';
                     
