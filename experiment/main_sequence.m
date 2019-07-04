@@ -6,10 +6,10 @@
 tic;
 cfg = struct();
 
-cfg.debug =1; % Check debugmode
+cfg.debug =0; % Check debugmode
 
-cfg.computer_environment = 'dummy'; % could be "mri", "dummy", "work_station", "behav"
-cfg.mri_scanner = 'prisma'; % could be "trio", "avanto","prisma", "essen"
+cfg.computer_environment = 'mri'; % could be "mri", "dummy", "work_station", "behav"
+cfg.mri_scanner = 'essen'; % could be "trio", "avanto","prisma", "essen"
 
 
 cfg.writtenCommunication = 1;
@@ -18,7 +18,7 @@ cfg.writtenCommunication = 1;
 % 3T TR should be 3.2 or 3.8 (WB)
 cfg.TR = 2.336; % CAIPI sequence Essen
 
-cfg.TR = 1.500; % 
+%cfg.TR = 1.500;  
     
 % cfg.TR = 3.408; % TR will determine stimulus timings
 
