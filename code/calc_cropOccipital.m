@@ -1,6 +1,6 @@
 % Crop functionals to only include the occipital lobe - to avoid
 % distortions in other parts affecting registrations unnecessarily. Note x,
-% y and z indices to include will change on a per subject / sesion basis!
+% y and z indices to include will change on a per subject / session basis!
 % Edit these manually.
 
 % Subject to process

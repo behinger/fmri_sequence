@@ -20,10 +20,13 @@ for SID = 1:length(subjectlist)
     
  
     p_meanrun= dir(fullfile(datadir,'derivates','preprocessing',subjectlist{SID},'ses-01','func',sprintf('*task-%s*_desc-occipitalcropMeanBias_bold.nii',cfg.task)));
-    i_corrMat   = fullfile('preprocessing',subjectlist{SID},'ses-01','coreg',[subjectlist{SID} '_ses-01_from-ANATCROPPED_to-FUNCCROPPED_mode-image.mat']);
-    i_boundaries= fullfile('preprocessing',subjectlist{SID},'ses-01','coreg',[subjectlist{SID} '_ses-01_from-ANATCROPPED_to-FUNCCROPPED_mode-surface.mat']);
-    o_corrMat   = fullfile('preprocessing',subjectlist{SID},'ses-01','coreg',[subjectlist{SID} '_ses-01_from-ANATCROPPED_to-FUNCCROPPED_desc-BBR_mode-image.mat']);
-    o_boundaries= fullfile('preprocessing',subjectlist{SID},'ses-01','coreg',[subjectlist{SID} '_ses-01_from-ANATCROPPED_to-FUNCCROPPED_desc-BBR_mode-surface.mat']);
+         
+    assert(~isempty(p_meanrun),'could not find mean functional file')
+    
+    i_corrMat   = fullfile('preprocessing',subjectlist{SID},'ses-01','coreg',[subjectlist{SID} '_ses-01_from-ANAT_to-FUNCCROPPED_mode-image.mat']);
+    i_boundaries= fullfile('preprocessing',subjectlist{SID},'ses-01','coreg',[subjectlist{SID} '_ses-01_from-ANAT_to-FUNCCROPPED_mode-surface.mat']);
+    o_corrMat   = fullfile('preprocessing',subjectlist{SID},'ses-01','coreg',[subjectlist{SID} '_ses-01_from-ANAT_to-FUNCCROPPED_desc-BBR_mode-image.mat']);
+    o_boundaries= fullfile('preprocessing',subjectlist{SID},'ses-01','coreg',[subjectlist{SID} '_ses-01_from-ANAT_to-FUNCCROPPED_desc-BBR_mode-surface.mat']);
     
     
     configuration = [];
@@ -33,8 +36,9 @@ for SID = 1:length(subjectlist)
     configuration.i_Boundaries = i_boundaries;
     configuration.o_CoregistrationMatrix = o_corrMat;
     configuration.o_Boundaries = o_boundaries;
-    tvm_useBbregister() XXX
-%     tvm_boundaryBasedRegistration(configuration,realignmentConfiguration);
+%     tvm_useBbregister XXX
+    warning('I might want to switch to BBregister here!')
+    tvm_boundaryBasedRegistration(configuration,realignmentConfiguration);
    
     % Write coregistration matrix to text file so we can use it with flirt
     % (didn't use this for anything, in the end - samlaw)

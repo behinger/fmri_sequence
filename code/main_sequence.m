@@ -9,10 +9,10 @@ cfg.rootdir= '/home/predatt/benehi/projects/fmri_sequence/';
 
 cfg.datadir = fullfile('/project/3018028.04/benehi/sequence/','data','pilot','bids');
 
-cfg.subjectlist = {'sub-01'};
+cfg.subjectlist = {'sub-04'};
 
 cfg.loopfun = @(cfg)['cd ' cfg.scriptdir ';export subjectlist="'  strjoin(cfg.subjectlist),'"; export datadir="' cfg.datadir '";'];
-cfg.gridpipe_long_4cpu = sprintf('| qsub -l "nodes=1:ppn=4,walltime=12:00:00,mem=12gb" -o %s',fullfile(cfg.datadir,'logfiles'));
+cfg.gridpipe_long_4cpu = sprintf('| qsub -l "nodes=1:ppn=4,walltime=22:00:00,mem=12gb" -o %s',fullfile(cfg.datadir,'logfiles'));
 cfg.gridpipe_long = sprintf('| qsub -l "nodes=1:walltime=22:00:00,mem=4GB,procs=1" -o %s',fullfile(cfg.datadir,'logfiles'));
 cfg.gridpipe_short = sprintf('| qsub -l "nodes=1:walltime=5:00:00,mem=4GB,procs=1" -o %s',fullfile(cfg.datadir,'logfiles'));
 
@@ -34,12 +34,12 @@ if strcmp(cfg.phase,'preprocessing')
             case 0
                 % convert .mat to .tsv in BIDS format
 %                   calc_generateEventfile(cfg.datadir,cfg.subjectlist,'condition','sustained')
-
+                calc_CAIPI7tReconstruction(fullfile(cfg.datadir,'../','recon'),cfg.subjectlist)
 %                 Step0_reconstructCAIPI(fullfile(cfg.datadir,'../','recon'),cfg.subjectlist)
                   % XXX copy files automatically to bids or use bidscoiner
             case 4
                 % get a (betteR) T1 from the mp2rage anatomical scan
-%                 Step4_modifyMP2RAGE(cfg.datadir,cfg.subjectlist)
+                calc_modifyMP2RAGE(cfg.datadir,cfg.subjectlist)
             case 5
                 % recon-all to segment
                 for SID =cfg.subjectlist
@@ -52,9 +52,9 @@ if strcmp(cfg.phase,'preprocessing')
             case 6
                 % crop the occipital cortex
                 % input needed how to best save coordinates for croping to
-
+                
                 f_cropmark = fullfile(cfg.datadir,'derivates','preprocessing','cropmarks_occipital.mat');
-               
+                
                 for SID = cfg.subjectlist
                     if exist(f_cropmark,'file')
                         crop = load(f_cropmark);
@@ -71,7 +71,7 @@ if strcmp(cfg.phase,'preprocessing')
                         tmp_a = input('Subject not found, adding it to table. Anat {X:X, Y:Y, Z:Z}:');
                         
                         spm_image('display',fullfile(cfg.datadir,SID{1}, 'ses-01','func',[SID{1} '_ses-01_task-sequential_run-1_echo-1_bold.nii']))
-
+                        
                         tmp_f = input('Subject not found, adding it to table. Func {X:X, Y:Y, Z:Z}:');
                         t_sub = table(SID(1),tmp_a,tmp_f,'VariableNames',{'SID','anat','func'});
                         
@@ -85,7 +85,7 @@ if strcmp(cfg.phase,'preprocessing')
                 
             case 7
                 %convert mgz (freesurfer) to nii
-                [~,out] = system([cfg.loopeval './Step7_ConvertFreesurferOutput.sh'],'-echo');
+%                 [~,out] = system([cfg.loopeval './Step7_ConvertFreesurferOutput.sh'],'-echo');
 
 
             case 9
@@ -121,14 +121,16 @@ if strcmp(cfg.phase,'preprocessing')
                 
                 
             case 12
+                [~,out] = system([cfg.loopeval './calc_biascorrectMeanFunc.sh'],'-echo');
+
                 % Boundary / Gradient based Surface / Volume alignment
-                calc_boundaryBasedRegistration(cfg.datadir,cfg.subjectlist)
+                calc_boundaryBasedRegistration(cfg.datadir,cfg.subjectlist,'task','sequential')
             
            
             case 15
                 % TVM recursive Boundary Registration.
                 % TODO: The clustereval should be pulled out to this script
-                calc_cluster_recursiveBoundaryRegistration(cfg.datadir,cfg.subjectlist)
+                calc_cluster_recursiveBoundaryRegistration(cfg.datadir,cfg.subjectlist,'task','sequential')
             
             case 16
                 calc_backupFreesurfer(cfg.datadir,cfg.subjectlist)
@@ -140,11 +142,11 @@ if strcmp(cfg.phase,'preprocessing')
                 calc_overwriteFreesurferBoundaries(cfg.datadir,cfg.subjectlist)
             case 18
 
-                vis_surfaceCoregistration(cfg.datadir,cfg.subjectlist{1},'boundary_identifier','%s_ses-01_from-ANATCROPPED_to-FUNCCROPPED_desc-recursive_mode-surface','axis','z')
+                    vis_surfaceCoregistration(cfg.datadir,cfg.subjectlist{1},'boundary_identifier','%s_ses-01_from-ANAT_to-FUNCCROPPED_desc-recursive_mode-surface','axis','z','task','sequential')
                 
-                vis_surfaceCoregistration(cfg.datadir,cfg.subjectlist{1},'boundary_identifier','%s_ses-01_from-ANATCROPPED_to-FUNCCROPPED_mode-surface','axis','z')
-                vis_surfaceCoregistration(cfg.datadir,cfg.subjectlist{1},'boundary_identifier','%s_ses-01_from-ANATCROPPED_to-FUNCCROPPED_desc-BBR_mode-surface','axis','z')
-                vis_surfaceCoregistration(cfg.datadir,cfg.subjectlist{1},'boundary_identifier','%s_ses-01_from-ANATCROPPED_to-FUNCCROPPED_desc-recursive_mode-surface','axis','z')
+                vis_surfaceCoregistration(cfg.datadir,cfg.subjectlist{1},'boundary_identifier','%s_ses-01_from-ANAT_to-FUNCCROPPED_mode-surface','axis','z','task','sequential')
+                vis_surfaceCoregistration(cfg.datadir,cfg.subjectlist{1},'boundary_identifier','%s_ses-01_from-ANAT_to-FUNCCROPPED_desc-BBR_mode-surface','axis','z','task','sequential')
+                vis_surfaceCoregistration(cfg.datadir,cfg.subjectlist{1},'boundary_identifier','%s_ses-01_from-ANAT_to-FUNCCROPPED_desc-recursive_mode-surface','axis','z','task','sequential')
                 %                 Step9_visualiseRecursiveRegistration(cfg.datadir,cfg.subjectlist,'slicelist',23,'boundary_identifier','Anat2FuncBoundaries_recurs_sam','functional_identifier','meanWM_run1_sam.nii')
                 
                 
@@ -156,22 +158,22 @@ if strcmp(cfg.phase,'preprocessing')
                     'o_RegistrationMovie','test_bbr.mp4')
                 config.i_Boundaries = {config.i_Boundaries}
                 tvm_makeRegistrationMovieWithMoreBoundaries(config)
-                
-                
-                
-                 p_meanrun= dir(fullfile(cfg.datadir,'derivates','preprocessing',cfg.subjectlist{1},'ses-01','func',sprintf('*task-%s*_desc-occipitalcropMeanBias_bold.nii','sustained')));
-                anat= dir(fullfile(cfg.datadir,'derivates','preprocessing',cfg.subjectlist{1},'ses-01','anat','sub*_ses-01_desc-anatomical_T1w.nii'))
-                coreg= dir(fullfile(cfg.datadir,'derivates','preprocessing',cfg.subjectlist{1},'ses-01','coreg','*_ses-01_from-ANAT_to-FUNCCROPPED_mode-image.mat'))
-                [~,outname,~] = fileparts(coreg.name);
-                config = struct('i_SubjectDirectory',fullfile(cfg.datadir,'derivates'),...
-                    'i_MoveVolumes',     fullfile('preprocessing',cfg.subjectlist{1},'ses-01','label','sub-01_ses-01_desc-varealabel_space-ANAT_label.nii'),...
-                    'i_ReferenceVolume',          fullfile('preprocessing',cfg.subjectlist{1},'ses-01','anat',anat.name),...
-                    'i_CoregistrationMatrix',fullfile('preprocessing',cfg.subjectlist{1},'ses-01','coreg',coreg.name),...
-                    'i_InverseRegistration',true,...
-                    'i_InterpolationMethod','NearestNeighbours',...
-                    'o_OutputVolumes',         fullfile('preprocessing',cfg.subjectlist{1},'ses-01','label_in_anat.nii'))
-                
-                tvm_resliceVolume(config)
+%                 
+%                 
+%                 
+%                  p_meanrun= dir(fullfile(cfg.datadir,'derivates','preprocessing',cfg.subjectlist{1},'ses-01','func',sprintf('*task-%s*_desc-occipitalcropMeanBias_bold.nii','sustained')));
+%                 anat= dir(fullfile(cfg.datadir,'derivates','preprocessing',cfg.subjectlist{1},'ses-01','anat','sub*_ses-01_desc-anatomical_T1w.nii'))
+%                 coreg= dir(fullfile(cfg.datadir,'derivates','preprocessing',cfg.subjectlist{1},'ses-01','coreg','*_ses-01_from-ANAT_to-FUNCCROPPED_mode-image.mat'))
+%                 [~,outname,~] = fileparts(coreg.name);
+%                 config = struct('i_SubjectDirectory',fullfile(cfg.datadir,'derivates'),...
+%                     'i_MoveVolumes',     fullfile('preprocessing',cfg.subjectlist{1},'ses-01','label','sub-01_ses-01_desc-varealabel_space-ANAT_label.nii'),...
+%                     'i_ReferenceVolume',          fullfile('preprocessing',cfg.subjectlist{1},'ses-01','anat',anat.name),...
+%                     'i_CoregistrationMatrix',fullfile('preprocessing',cfg.subjectlist{1},'ses-01','coreg',coreg.name),...
+%                     'i_InverseRegistration',true,...
+%                     'i_InterpolationMethod','NearestNeighbours',...
+%                     'o_OutputVolumes',         fullfile('preprocessing',cfg.subjectlist{1},'ses-01','label_in_anat.nii'))
+%                 
+%                 tvm_resliceVolume(config)
                 
                 
                 
@@ -180,19 +182,23 @@ if strcmp(cfg.phase,'preprocessing')
                 
                 
                 
-                [~,out] = system([cfg.loopeval './calc_biascorrectMeanFunc.sh'],'-echo');
             case 21
-                 [~,out] = system([cfg.loopeval './calc_alignAnat2Func.sh'],'-echo');
-                 % fsleyes anat/sub-01_ses-01_desc-occipitalcrop_T1w.nii func/sub-01_ses-01_task-sequential_desc-occipitalcropMeanBias_space-ANATCROPPED_bold.nii
-                 % fsleyes anat/sub-01_ses-01_desc-occipitalcrop_space-ANAT_T1w.nii anat/sub-01_ses-01_desc-anatomical_T1w.nii 
+                 [~,out] = system([cfg.loopeval './calc_alignAnat2Func_viaFullFunc.sh'],'-echo');
+                 
+                 % if not available go over cropped Anatomical
+                 [~,out] = system([cfg.loopeval './calc_alignAnat2Func_viaAnatCrop.sh'],'-echo');
+                 
+                % fsleyes anat/sub-*_ses-01_desc-occipitalcrop_T1w.nii func/sub-*_ses-01_task-sustained_desc-occipitalcropMeanBias_space-ANATCROPPED_bold.nii
+                 % fsleyes anat/sub-*_ses-01_desc-occipitalcrop_space-ANAT_T1w.nii anat/sub-*_ses-01_desc-anatomical_T1w.nii 
+                 % fsleyes anat/sub-*_ses-01_desc-anatomical_space-FUNCCROPPED_T1w.nii func/sub-*_ses-01_task-*_desc-occipitalcropMeanBias_bold.nii
             case 22
                 [~,out] = system([cfg.loopeval './calc_createRetinotopyFromAtlas.sh'],'-echo');
                 [~,out] = system([cfg.loopeval './calc_visualLabelToFunc.sh'],'-echo');
-                %fsleyes anat/sub-*_ses-01_desc-anatomical_space-FUNCCROPPED_T1w.nii label/sub-01_ses-01_desc-varealabel_space-FUNCCROPPED_label.nii func/sub-*_ses-01_task-*_desc-occipitalcropMeanBias_bold.nii
+                %fsleyes anat/sub-*_ses-01_desc-anatomical_space-FUNCCROPPED_T1w.nii label/sub-*_ses-01_desc-varea_space-FUNCCROPPED_label.nii func/sub-*_ses-01_task-*_desc-occipitalcropMeanBias_bold.nii
 
 
-                tvm_labelToVolume
-                tvm_installOpenFmriAnalysisToolbox XXX add configuration to startup
+%                 tvm_labelToVolume
+
         end
         fprintf('Finished Step %i \n',step)
     end
