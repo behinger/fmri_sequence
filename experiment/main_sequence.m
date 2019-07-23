@@ -6,10 +6,10 @@
 tic;
 cfg = struct();
 
-cfg.debug =1; % Check debugmode
+cfg.debug =0; % Check debugmode
 
-cfg.computer_environment = 'dummy'; % could be "mri", "dummy", "work_station", "behav"
-cfg.mri_scanner = 'prisma'; % could be "trio", "avanto","prisma", "essen"
+cfg.computer_environment = 'mri'; % could be "mri", "dummy", "work_station", "behav"
+cfg.mri_scanner = 'essen'; % could be "trio", "avanto","prisma", "essen"
 
 
 cfg.writtenCommunication = 1;
@@ -18,17 +18,18 @@ cfg.writtenCommunication = 1;
 % 3T TR should be 3.2 or 3.8 (WB)
 cfg.TR = 2.336; % CAIPI sequence Essen
 
-cfg.TR = 1.500; % 213 image volumes to be recorded
+%cfg.TR = 1.500;  
     
 % cfg.TR = 3.408; % TR will determine stimulus timings
 
 cfg = setup_parameters(cfg);
+cfg.sequence.numRuns = 8; %8
+cfg.sequence.numBlocks = 12; %12 Number of trials in a run
 
 stimulatedTrialLength = (1/cfg.sequence.ISI+1)*cfg.sequence.stimdur*round(cfg.sequence.trialLength/( (1/cfg.sequence.ISI+1)*cfg.sequence.stimdur)/4)*4;
 fprintf('TR: %.3fs \n block:\t\t%.1fs \n blockEf:\t%.1fs \n ITI:\t\t%.1fs\n',cfg.TR,cfg.sequence.trialLength,stimulatedTrialLength,cfg.sequence.ITI)
+fprintf('Volumes to record: %.2f\n',((cfg.sequence.ITI + cfg.sequence.trialLength)*cfg.sequence.numBlocks+cfg.sequence.scannerWaitTime)/cfg.TR)
 %%
-cfg.sequence.numRuns = 8; %8
-cfg.sequence.numBlocks = 12; %12 Number of trials in a run
 
 fprintf('Setting up parameters \n')
 clear screen % to reset the debugmode

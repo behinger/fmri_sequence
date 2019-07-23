@@ -15,8 +15,10 @@ end
 
 % Set up key experiment parameters
 
+KbName('UnifyKeyNames')
 % These keys are used if the bitsi_buttonbox is used over USB
 % cfg.keys = [KbName('y') KbName('r') KbName('b') KbName('g') KbName('1') KbName('2'),KbName('3'),KbName('4'),KbName('5')]; %copied from essen_localiser_v4
+
 cfg.keys = [89 82 66 71 97 98 99 100 101]; %KbName sometimes does not work?!?
 cfg.sequence = struct();
 cfg.sequence.stimSize = 12; % Diameter in degrees
