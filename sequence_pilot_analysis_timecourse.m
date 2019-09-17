@@ -16,58 +16,17 @@ ix = find(ix_v1==1 & ix_ec15==1);
 
 assert(length(ix)>200)
 %% Load Event Files
-eventFiles = [dir(fullfile(cfg.datadir,SID,'ses-01','func','*run-*events.tsv'))];
-events = [];
-for run = 1:length(eventFiles)
-    t = readtable(fullfile(eventFiles(run).folder,eventFiles(run).name),'fileType','text');
-    events = [events;t];
-end
+events = collect_events(cfg.datadir,SID);
 %% SPM DEsignmatrix for later voxel selection
-data_path = './local/';
+
+
+calc_spm2ndLevel(cfg.datadir,{SID},'task','sequential','recalculate',0) % in this context we are fine with having the data once, no need to recalculate
+
+
 runIxTop200 = [];
-
-if SID== "sub-04"
-    TR = 2.336;
-else
-    TR = 1.5;
-end
+spmdatadir = fullfile(cfg.datadir,'derivates','SPM',SID,'ses-01','GLM',sprintf('run-%i',run));
 for run = 1:8
-    
-    fmri_spec = struct;
-    fmri_spec.dir = cellstr(fullfile(data_path,'GLM',sprintf('%s_run-%i',SID, run)));
-    fmri_spec.timing.units = 'secs';
-    fmri_spec.timing.RT= TR;
-    fmri_spec.sess.cond.name = 'Stimulus';
-    fmri_spec.sess.cond.onset =  events{events.run== run & events.message=="stimOnset"&events.trial==1,'onset'}';
-    fmri_spec.sess.cond.duration = repmat(16,size(fmri_spec.sess.cond.onset));
-    fmri_spec.sess.scans = {fullfile(niftis(run).folder,niftis(run).name)};
-    fmri_spec.cvi = 'AR(1)';
-    
-    if exist(fullfile(data_path,'GLM',sprintf('%s_run-%i',SID, run),'spmT_0001.nii'),'file')
-        % rmdir('./local/GLM','s')
-        warning('Old results found, will not recalculate')
-        continue
-    end
-    matlabbatch = [];
-    matlabbatch{1}.cfg_basicio.file_dir.dir_ops.cfg_mkdir.parent = cellstr(data_path);
-    matlabbatch{1}.cfg_basicio.file_dir.dir_ops.cfg_mkdir.name = fullfile('GLM',sprintf('%s_run-%i',SID, run));
-    
-    matlabbatch{2} = struct('spm',struct('stats',struct('fmri_spec',fmri_spec)));
-    tmp = struct;
-    tmp.stats.fmri_est.spmmat = cellstr(fullfile(data_path,'GLM',sprintf('%s_run-%i',SID, run),'SPM.mat'));
-    matlabbatch{3} = struct('spm',tmp);
-    
-    % Contrasts
-    %--------------------------------------------------------------------------
-    matlabbatch{4}.spm.stats.con.spmmat = cellstr(fullfile(data_path,'GLM',sprintf('%s_run-%i',SID, run),'SPM.mat'));
-    matlabbatch{4}.spm.stats.con.consess{1}.tcon.name = 'Stim > Rest';
-    matlabbatch{4}.spm.stats.con.consess{1}.tcon.weights = [1 0];
-    % Call script to set up design
-    spm_jobman('run',matlabbatch);
-end
-
-for run = 1:8
-    tmpT = nifti(fullfile(data_path,'GLM',sprintf('%s_run-%i',SID, run),'spmT_0001.nii'));
+    tmpT = nifti(fullfile(spmdatadir,'..',sprintf('run-%i',run),'spmT_0001.nii'));
     
     [~,I] = sort(tmpT.dat(ix));
     runIxTop200{run} = ix(I(end-200:end));
@@ -105,31 +64,7 @@ end
 
 onsetIX = events.trial == 1;
 events_onset = events(onsetIX,:);
-allDat = [];
-for block = 1:height(events_onset)
-    tmp = events_onset(block,:);
-    ix_time = (-3:45)/TR;%-3/TR:1/TR:TR:20/TR;
-    ix_time = unique(round(ix_time))*TR;
-    ix_tr = unique(round(ix_time/TR + tmp.onsetTR));
-    
-    erb = nan(1,length(ix_tr));
-    erb(ix_tr>0 & ix_tr<=size(act,2)) = act(tmp.run,max(1,ix_tr(1)):min(size(act,2),ix_tr(end)));
-    
-    
-    % bslcorrect =@(x,times)bsxfun(@minus,x,mean(x(:,times>=28 & times <=30),2));
-    erb_bsl = erb - mean(erb(ix_time>=-1.5 & ix_time <=1.5));
-    tmpOut = [];
-    for k = 1:length(ix_tr)
-        
-    tmp.erb = erb(k);
-    tmp.erb_bsl = erb_bsl(k);
-    tmp.time = ix_time(k);
-    tmpOut = [tmpOut;tmp];
-    end
-    allDat = [allDat;tmpOut];
-end
-
-
+allDat = calc_erb(act,events_onset,TR,[-3 40])
 
 %%
 %%
