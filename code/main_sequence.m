@@ -290,18 +290,25 @@ if strcmp(cfg.phase,'laminar')
                 % zscore localizer & functionals, and add weighted versions
                 % (weighting might be controversial)
                 
-                StepX_CreateWeightedFunctionalFiles(cfg.datadir,cfg.subjectlist)
+                % No localizer used for 
+                
+                calc_spm2ndLevel(cfg.datadir,{SID},'task','sequential','recalculate',0) % in this context we are fine with having the data once, no need to recalculate
+                
+                
+                calc_localizerWeightedFunc(cfg.datadir,cfg.subjectlist,'zscore',1,'weight',1,'software2nd','spm')
+
+
             case 0
                 % I put it here, because its output goes into the tvm_layer
                 % folder and is not preprocessing anymore imho
-                StepX_CreateROIs(cfg.datadir,cfg.subjectlist,'topn',500)
+                calc_createROI(cfg.datadir,cfg.subjectlist,'topn',500)
 
             case 1
-                Step1_layersPipeline(cfg.datadir,cfg.subjectlist)
+                layer_tvmPipeline(cfg.datadir,cfg.subjectlist)
             case 2
-                Step2_createDesignMatrices(cfg.datadir,cfg.subjectlist)
+                layer_createSpatialglmX(cfg.datadir,cfg.subjectlist)
             case 3
-                Step3_timecourse_bene(cfg.datadir,cfg.subjectlist)
+                layer_timecourse(cfg.datadir,cfg.subjectlist)
           
         end
         fprintf('Finished Step %i \n',step)
