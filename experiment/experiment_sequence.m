@@ -175,27 +175,13 @@ for blockNum = 1:nblock
     
     distractorTiming_stimulus = trialDistractor_stimulus{blockNum};
     %     distractorTiming_dot      = trialDistractor_dot{blockNum}+expectedTime;
-    sequence_ix = 0; % counter so that after 4 sequence stimuli we can show 1s pause against adaptation effects.
+    sequence_ix = 0; % counter so that after 6 sequence stimuli we can show 1s pause against adaptation effects.
     for trialNum = 1:ntrials
-        
-        %% Draw first reference stimulus after ITI
-        
-        
-        
-        %         fprintf(fLog,'%i from %i \t condition: %s \t contrast: %.1f \n',trialNum,ntrials,random_block.condition{trialNum},random_block.contrast(trialNum));
-        
         
         %% STIMULUS
         expectedtimings(1,trialNum) = expectedTime;
-        %         fprintf(fLog,'expectedTime(TR):\t %.5f \t toc: %.5f\n',expectedTime/cfg.TR,(GetSecs-startTime)/cfg.TR);
-        
-        firstStim = 0;
-        
-        phase_ix = random_block.phase(trialNum); % just so every trial starts with a different phase, could be random as well
-        %         drawingtime = 2*cfg.halfifi;
-        %         draw_fixationdot(cfg,params.dotSize)
-        
-        
+                
+        phase_ix = random_block.phase(trialNum); % just so every trial starts with a different phase, could be random as well        
         
         %catchTrial?
         if any(trialNum == ceil(distractorTiming_stimulus*(1/singleStimDuration)))
@@ -229,11 +215,7 @@ for blockNum = 1:nblock
         
         responses = draw_fixationdot_checkBitsi(cfg,params,expectedTime,responses);
         
-        %         draw_fixationdot_task(cfg,params.dotSize,params.targetsColor*cfg.Lmax_rgb,distractorTiming_dot,startTime,expectedTime,drawingtime,1)
-        %         fprintf(fLog,'beforeOnset(TR):\t %.5f \t toc: %.5f\n',(expectedTime-cfg.halfifi)/cfg.TR,(GetSecs-startTime)/cfg.TR);
-        
         stimOnset = Screen('Flip', cfg.win, startTime + expectedTime - cfg.halfifi,1)-startTime;
-        %         fprintf(fLog,'onsettimeSTIM(TR):\t %.5f \t toc: %.5f\n',stimOnset/cfg.TR,(GetSecs-startTime)/cfg.TR);
         if catchTrial == 0
             add_log_entry('stimOnset',stimOnset)
         else
@@ -245,7 +227,7 @@ for blockNum = 1:nblock
         responses = draw_fixationdot_checkBitsi(cfg,params,expectedTime,responses);
         
         sequence_ix = sequence_ix+1;
-        if sequence_ix == 4
+        if sequence_ix == 6
             sequence_ix = 0;
             % ISI seconds pause between sequences
             Screen('FillRect',cfg.win,cfg.background)
@@ -261,15 +243,14 @@ for blockNum = 1:nblock
     Screen('FillRect',cfg.win,cfg.background)
     draw_fixationdot(cfg,params.dotSize)
     onset = Screen('Flip', cfg.win, startTime + expectedTime - cfg.halfifi)-startTime;
-    %     fprintf(fLog,'lastTrialFlip(TR):%.5f \t toc: %.5f\n',onset/cfg.TR,(GetSecs-startTime)/cfg.TR);
     add_log_entry('blockend',onset)
     
     
     % overwrite expected Time to catch up with minor fluctiations in
     % expected Time
-    expectedTimeOld = expectedTime;
+%     expectedTimeOld = expectedTime;
     expectedTime = expectedTime_start+params.trialLength + params.ITI;
-    fprintf('timing difference:%.4f\n',expectedTime - expectedTimeOld)
+%     fprintf('timing difference:%.4f\n',	 - expectedTimeOld)
     %     fprintf(fLog,'expectedTime ITI(TR):%.5f \t toc: %.5f\n',expectedTime/cfg.TR,(GetSecs-startTime)/cfg.TR);
     
     

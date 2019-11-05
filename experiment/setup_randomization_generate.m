@@ -23,28 +23,54 @@ randomization = struct('trial',[],'block',[],'condition',[],'stimulus',[],'run',
 addpath(fullfile('..','functions'));
 
 % ceil(x/4)*4 to get same number of contrast*condition per block
-n_stim = ceil(cfg.sequence.trialLength/( (1/cfg.sequence.ISI+1)*cfg.sequence.stimdur)/4)*4;
+% n_stim = ceil(cfg.sequence.trialLength/( (1/cfg.sequence.ISI+1)*cfg.sequence.stimdur)/4)*4;
+n_stim = floor(cfg.sequence.trialLength/(1 + length(cfg.sequence.refOrient)*cfg.sequence.stimdur))*length(cfg.sequence.refOrient);
 
 
-% all allowed permutations with 4 stimuli
-allPerms = perms(1:4);
-    remove =        all(allPerms == repmat([1,2,3,4],size(allPerms,1),1),2)...
-        | all(allPerms == repmat([2,3,4,1],size(allPerms,1),1),2)...
-        | all(allPerms == repmat([3,4,1,2],size(allPerms,1),1),2)...
-        | all(allPerms == repmat([4,1,2,3],size(allPerms,1),1),2) ...
-        | all(allPerms == repmat([4,3,2,1],size(allPerms,1),1),2)...
-        | all(allPerms == repmat([3,2,1,4],size(allPerms,1),1),2)...
-        | all(allPerms == repmat([2,1,4,3],size(allPerms,1),1),2)...
-        | all(allPerms == repmat([1,4,3,2],size(allPerms,1),1),2);
-allPerms(remove,:) = [];
+%% find a random sequence
+allPerms = perms(1:length(cfg.sequence.refOrient));
 
-
+neighbouring_ident = abs(diff([repmat(100,size(allPerms,1),1),allPerms],[],2))==1;
+for k = 1:size(allPerms,1) % go through each perm
+    % only keep bad-indeces for sequences where 3 consecutive stimuli are
+    % in a row (we dont want those).
+    neighbouring_ident(k,:) =  neighbouring_ident(k,:) .* bwareaopen(neighbouring_ident(k,:),2);
+end
+bad_ix = any(neighbouring_ident,2);
+allPerms(bad_ix,:) = [];
 
 % One fixed sequence throughout the experiment
-
-rand_ix = allPerms(randi(size(allPerms,1),1),:);
+rand_select_ix = randi(size(allPerms,1),1);
+rand_ix = allPerms(rand_select_ix,:);
 sequence = cfg.sequence.refOrient(rand_ix);
 
+%% Generate all possible random sequences
+% For now assume that the selected nonrandom sequence was 1,2,3,4,5,6 (and
+% move to the reals equence at the end)
+
+allPerms = perms(1:length(cfg.sequence.refOrient));
+% Remove the ones where 3 can predict 4, or 5 6 etc.
+bad_ix = any(diff([repmat(100,size(allPerms,1),1),allPerms],[],2)==1,2);
+allPerms(bad_ix,:) = [];
+
+% now we "jumble" them to the "absolute order" 
+allPerms = rand_ix(allPerms);
+
+% and remove the same triplets
+% as we remove dbefore, e.g. 1 2 3 6 4 5 is not ok, because 1 2 3 could
+% potentially be perceived as rotation
+
+% sequences because they cant exist in the random sequence either
+neighbouring_ident = abs(diff([repmat(100,size(allPerms,1),1),allPerms],[],2))==1;
+for k = 1:size(allPerms,1) % go through each perm
+    % only keep bad-indeces for sequences where 3 consecutive stimuli are
+    % in a row (we dont want those).
+    neighbouring_ident(k,:) =  neighbouring_ident(k,:) .* bwareaopen(neighbouring_ident(k,:),2);
+end
+
+bad_ix = any(neighbouring_ident,2);
+allPerms(bad_ix,:) = [];
+%%
 for runNum = 1:numRuns
     
     
@@ -62,37 +88,23 @@ for runNum = 1:numRuns
 
     for blockNum= 1:numBlocks
         
-        stimulus = repmat(sequence,1,n_stim/4);
+        stimulus = repmat(sequence,n_stim/6,1);
+        % circshift them so that e.g. from
+        % ABCD ABCD ABCD
+        % we receive
+        % ABCD DABC BCDA etc. so same sequence, but different starting
+        % points
+        for k = 1:size(stimulus,1)
+            stimulus(k,:) = circshift(stimulus(k,:),randi(6,1));
+        end
+        stimulus = stimulus';
+        stimulus = stimulus(:)';
+        
         if strcmp(condition{blockNum},'random')
-            stimulus_ix = randi(size(allPerms,1),n_stim/4,1);
+            stimulus_ix = randi(size(allPerms,1),n_stim/6,1);
             
             stimulus = allPerms(stimulus_ix,:).';
             stimulus = cfg.sequence.refOrient(stimulus(:));
-            %
-            %         stimulus = reshape(stimulus, numel(stimulus), 1);
-            %
-            %         stimulus = stimulus(randperm(numel(stimulus)));
-            %
-            %
-            %         success = 0;
-            %         i = 2;
-            %         while ~success
-            %             iterations = 0;
-            %             while i < numel(stimulus)
-            %                 if stimulus(i) ~= stimulus(i - 1)
-            %                     i = i + 1;
-            %                 else
-            %                     tmp = stimulus(i:end);
-            %                     stimulus(i:end) = tmp(randperm(numel(tmp)));
-            %                 end
-            %                 iterations = iterations+1;
-            %                 if (iterations > 10000)
-            %                     break
-            %                 end
-            %             end
-            %             success = 1;
-            %         end
-            %         stimulus = stimulus';
         end
         phase = mod(randperm(n_stim),length(cfg.sequence.phases))+1;
         

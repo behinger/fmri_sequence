@@ -1,4 +1,4 @@
-%% function Essen_RunExperiment
+EEG%% function Essen_RunExperiment
 % Run through experiment. Does numRuns runs of attention experiment
 % and one run of orientation localizer.
 
@@ -6,9 +6,9 @@
 tic;
 cfg = struct();
 
-cfg.debug =0; % Check debugmode
+cfg.debug =1; % Check debugmode
 
-cfg.computer_environment = 'mri'; % could be "mri", "dummy", "work_station", "behav"
+cfg.computer_environment = 't480s'; % could be "mri", "dummy", "work_station", "behav"
 cfg.mri_scanner = 'essen'; % could be "trio", "avanto","prisma", "essen"
 
 
@@ -24,7 +24,7 @@ cfg.TR = 2.336; % CAIPI sequence Essen
 
 cfg = setup_parameters(cfg);
 cfg.sequence.numRuns = 8; %8
-cfg.sequence.numBlocks = 12; %12 Number of trials in a run
+cfg.sequence.numBlocks = 12; %12 Number of block in a run
 
 stimulatedTrialLength = (1/cfg.sequence.ISI+1)*cfg.sequence.stimdur*round(cfg.sequence.trialLength/( (1/cfg.sequence.ISI+1)*cfg.sequence.stimdur)/4)*4;
 fprintf('TR: %.3fs \n block:\t\t%.1fs \n blockEf:\t%.1fs \n ITI:\t\t%.1fs\n',cfg.TR,cfg.sequence.trialLength,stimulatedTrialLength,cfg.sequence.ITI)

@@ -22,7 +22,8 @@ KbName('UnifyKeyNames')
 cfg.keys = [89 82 66 71 97 98 99 100 101]; %KbName sometimes does not work?!?
 cfg.sequence = struct();
 cfg.sequence.stimSize = 12; % Diameter in degrees
-cfg.sequence.refOrient = [0 45 90 135];
+cfg.sequence.refOrient = linspace(0,180,6+1);
+cfg.sequence.refOrient(end) = [];
 cfg.sequence.spatialFrequency = 1; % cpd
 cfg.sequence.phases = linspace(0,2*pi,13);
 cfg.sequence.phases(end) = []; %delete last one as 0 = 2*pi
