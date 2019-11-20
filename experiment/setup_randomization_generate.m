@@ -71,37 +71,45 @@ end
 bad_ix = any(neighbouring_ident,2);
 allPerms(bad_ix,:) = [];
 %%
+% condition runWise
+
+condition_dict = {'predictable','random'};
+assert(ceil(numRuns/2) == floor(numRuns/2))
+condition = repmat([0 1],1,numRuns/2);
+rand_shuffle = randperm(numRuns);
+condition_runwise = condition_dict(condition(rand_shuffle)+1);
 for runNum = 1:numRuns
     
     
     % determine whether we use same or different stimuli trialtype
-    condition_dict = {'predictable','random'};
-    condition = repmat([0 1],1,numBlocks/length(condition_dict));
-    contrast  = repmat([1 1 2 2],1,numBlocks/length(condition_dict)/2);
+%     condition_dict = {'predictable','random'};
+%     condition = repmat([0 1],1,numBlocks/length(condition_dict));
+    contrast  = repmat([1 1 2 2],1,numBlocks/4);
     
     rand_shuffle = randperm(numBlocks);
-    condition = repmat(condition_dict(condition(rand_shuffle)+1),1,numBlocks);
+%     condition = repmat(condition_dict(condition(rand_shuffle)+1),1,numBlocks);
+    condition = repmat(condition_runwise(runNum),1,numBlocks);
     
-    contrast = cfg.sequence.contrast(repmat(contrast(rand_shuffle),1,numBlocks));
+    contrast = cfg.sequence.contrast(contrast(rand_shuffle));
     
     
 
     for blockNum= 1:numBlocks
         
-        stimulus = repmat(sequence,n_stim/6,1);
+        stimulus = repmat(sequence,n_stim/length(cfg.sequence.refOrient),1);
         % circshift them so that e.g. from
         % ABCD ABCD ABCD
         % we receive
         % ABCD DABC BCDA etc. so same sequence, but different starting
         % points
         for k = 1:size(stimulus,1)
-            stimulus(k,:) = circshift(stimulus(k,:),randi(6,1));
+            stimulus(k,:) = circshift(stimulus(k,:),randi(length(cfg.sequence.refOrient),1));
         end
         stimulus = stimulus';
         stimulus = stimulus(:)';
         
         if strcmp(condition{blockNum},'random')
-            stimulus_ix = randi(size(allPerms,1),n_stim/6,1);
+            stimulus_ix = randi(size(allPerms,1),n_stim/length(cfg.sequence.refOrient),1);
             
             stimulus = allPerms(stimulus_ix,:).';
             stimulus = cfg.sequence.refOrient(stimulus(:));

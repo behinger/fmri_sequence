@@ -227,7 +227,7 @@ for blockNum = 1:nblock
         responses = draw_fixationdot_checkBitsi(cfg,params,expectedTime,responses);
         
         sequence_ix = sequence_ix+1;
-        if sequence_ix == 6
+        if sequence_ix == length(params.refOrient)
             sequence_ix = 0;
             % ISI seconds pause between sequences
             Screen('FillRect',cfg.win,cfg.background)

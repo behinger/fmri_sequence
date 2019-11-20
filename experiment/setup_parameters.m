@@ -22,7 +22,7 @@ KbName('UnifyKeyNames')
 cfg.keys = [89 82 66 71 97 98 99 100 101]; %KbName sometimes does not work?!?
 cfg.sequence = struct();
 cfg.sequence.stimSize = 12; % Diameter in degrees
-cfg.sequence.refOrient = linspace(0,180,6+1);
+cfg.sequence.refOrient = linspace(0,180,5+1);
 cfg.sequence.refOrient(end) = [];
 cfg.sequence.spatialFrequency = 1; % cpd
 cfg.sequence.phases = linspace(0,2*pi,13);
@@ -39,7 +39,7 @@ cfg.sequence.stimdur = 0.25;
 cfg.sequence.trialLength = round(16/cfg.TR)*cfg.TR; %
 cfg.sequence.scannerWaitTime = cfg.TR * 3;
 
-cfg.sequence.ITI = round(10/cfg.TR)*cfg.TR;%cfg.sequence.trialLength;
+cfg.sequence.ITI = round(12/cfg.TR)*cfg.TR;%cfg.sequence.trialLength;
 
 cfg.sequence.dotSize = 1.5*[0.25 0.06]; % Size of fixation dot in pixels
 

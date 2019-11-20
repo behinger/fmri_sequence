@@ -1,4 +1,4 @@
-EEG%% function Essen_RunExperiment
+%% function Essen_RunExperiment
 % Run through experiment. Does numRuns runs of attention experiment
 % and one run of orientation localizer.
 
@@ -36,7 +36,7 @@ clear screen % to reset the debugmode
 if cfg.debug
     input('!!!DEBUGMODE ACTIVATED!!! - continue with enter')
     Screen('Preference', 'SkipSyncTests', 1)
-    PsychDebugWindowConfiguration;
+%     PsychDebugWindowConfiguration;
 end
 
 
