@@ -6,8 +6,8 @@
 tic;
 cfg = struct();
 
-cfg.debug =1; % Check debugmode
-
+cfg.debug =0; % Check debugmode
+cfg.behav = 1;
 cfg.computer_environment = 't480s'; % could be "mri", "dummy", "work_station", "behav"
 cfg.mri_scanner = 'essen'; % could be "trio", "avanto","prisma", "essen"
 
@@ -24,7 +24,12 @@ cfg.TR = 2.336; % CAIPI sequence Essen
 
 cfg = setup_parameters(cfg);
 cfg.sequence.numRuns = 8; %8
-cfg.sequence.numBlocks = 12; %12 Number of block in a run
+if cfg.behav
+    cfg.sequence.trialLength =4; % trick to get randomization right.
+    cfg.sequence.numBlocks = 5*12; %12 Number of block in a run
+else
+    cfg.sequence.numBlocks = 12;
+end
 
 stimulatedTrialLength = (1/cfg.sequence.ISI+1)*cfg.sequence.stimdur*round(cfg.sequence.trialLength/( (1/cfg.sequence.ISI+1)*cfg.sequence.stimdur)/4)*4;
 fprintf('TR: %.3fs \n block:\t\t%.1fs \n blockEf:\t%.1fs \n ITI:\t\t%.1fs\n',cfg.TR,cfg.sequence.trialLength,stimulatedTrialLength,cfg.sequence.ITI)
@@ -48,6 +53,9 @@ else
     SID = input('Enter subject ID:','s');
 end
 assert(isnumeric(str2num(SID)))
+
+
+
 
 % Gen/Load Randomization
 try
@@ -86,8 +94,12 @@ for curRun = 1:cfg.sequence.numRuns % is a sorted list of runs
     DrawFormattedText(cfg.win, 'Moving on to main task ...', 'center', 'center');
     
     fprintf('Starting experiment_adaptation\n')
-    exitstatus = experiment_sequence(cfg,slice_randomization(randomization,str2num(SID),curRun));
-    
+    if cfg.behav
+    exitstatus = experiment_sequenceBehaviour(cfg,slice_randomization(randomization,str2num(SID),curRun));
+    else
+        exitstatus = experiment_sequence(cfg,slice_randomization(randomization,str2num(SID),curRun));
+    end
+    warning('Behaviour')
     if curRun <=cfg.sequence.numRuns
         text = ['Moving on to run ', num2str(curRun+1), ' of ', num2str(cfg.sequence.numRuns), '...'];
         DrawFormattedText(cfg.win, text, 'center', 'center');

@@ -30,13 +30,23 @@ n_stim = floor(cfg.sequence.trialLength/(1 + length(cfg.sequence.refOrient)*cfg.
 %% find a random sequence
 allPerms = perms(1:length(cfg.sequence.refOrient));
 
-neighbouring_ident = abs(diff([repmat(100,size(allPerms,1),1),allPerms],[],2))==1;
+neighbouring_ident = abs(diff([allPerms(:,2),allPerms],[],2))==1;
 for k = 1:size(allPerms,1) % go through each perm
     % only keep bad-indeces for sequences where 3 consecutive stimuli are
     % in a row (we dont want those).
     neighbouring_ident(k,:) =  neighbouring_ident(k,:) .* bwareaopen(neighbouring_ident(k,:),2);
 end
 bad_ix = any(neighbouring_ident,2);
+
+%remove  things like 1 4 2 5 3 => where every second stimulus is increasing
+bad_comb = [];
+for k = 1:3
+    base = mod(0:k:(k*5-1),5)+1;
+    bad_comb = [bad_comb; mod(repmat(base,5,1)+repmat([1:5]',1,5),5)+1];
+end
+
+bad_ix = bad_ix | ismember(allPerms,bad_comb,'rows');
+
 allPerms(bad_ix,:) = [];
 
 % One fixed sequence throughout the experiment
@@ -45,7 +55,7 @@ rand_ix = allPerms(rand_select_ix,:);
 sequence = cfg.sequence.refOrient(rand_ix);
 
 %% Generate all possible random sequences
-% For now assume that the selected nonrandom sequence was 1,2,3,4,5,6 (and
+% For now assume that the selected nonrandom sequence was 1,2,3,4,5 (and
 % move to the reals equence at the end)
 
 allPerms = perms(1:length(cfg.sequence.refOrient));
@@ -61,34 +71,50 @@ allPerms = rand_ix(allPerms);
 % potentially be perceived as rotation
 
 % sequences because they cant exist in the random sequence either
-neighbouring_ident = abs(diff([repmat(100,size(allPerms,1),1),allPerms],[],2))==1;
+neighbouring_ident = abs(diff([allPerms(:,2),allPerms],[],2))==1;
 for k = 1:size(allPerms,1) % go through each perm
     % only keep bad-indeces for sequences where 3 consecutive stimuli are
     % in a row (we dont want those).
     neighbouring_ident(k,:) =  neighbouring_ident(k,:) .* bwareaopen(neighbouring_ident(k,:),2);
 end
+bad_comb = [];
+for k = 1:3
+    base = mod(0:k:(k*5-1),5)+1;
+    bad_comb = [bad_comb; mod(repmat(base,5,1)+repmat([1:5]',1,5),5)+1];
+end
 
-bad_ix = any(neighbouring_ident,2);
+bad_ix = ismember(allPerms,bad_comb,'rows') | any(neighbouring_ident,2);
+
 allPerms(bad_ix,:) = [];
 %%
 % condition runWise
-
+conditionRunwise = 0;
+warning('Bene Changed to ~ConditionRunwise')
 condition_dict = {'predictable','random'};
 assert(ceil(numRuns/2) == floor(numRuns/2))
 condition = repmat([0 1],1,numRuns/2);
 rand_shuffle = randperm(numRuns);
 condition_runwise = condition_dict(condition(rand_shuffle)+1);
+
+warning('Sequence reduced to 2 stimuli')
+allPerms = (mod(allPerms,2)+1)*2;
+sequence = cfg.sequence.refOrient((mod(rand_ix,2)+1)*2);
 for runNum = 1:numRuns
     
-    
+    rand_shuffle = randperm(numBlocks);
+
     % determine whether we use same or different stimuli trialtype
-%     condition_dict = {'predictable','random'};
-%     condition = repmat([0 1],1,numBlocks/length(condition_dict));
+    if ~conditionRunwise
+        % each block/run can be either conditoin
+        condition = repmat([0 1],1,numBlocks/length(condition_dict));
+        condition = repmat(condition_dict(condition(rand_shuffle)+1),1,numBlocks);
+    else
+        % blocked runwise
+        condition = repmat(condition_runwise(runNum),1,numBlocks);
+    end
     contrast  = repmat([1 1 2 2],1,numBlocks/4);
     
-    rand_shuffle = randperm(numBlocks);
-%     condition = repmat(condition_dict(condition(rand_shuffle)+1),1,numBlocks);
-    condition = repmat(condition_runwise(runNum),1,numBlocks);
+
     
     contrast = cfg.sequence.contrast(contrast(rand_shuffle));
     
